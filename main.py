@@ -177,7 +177,7 @@ async def unb(ctx, *, message):
 		async with ctx.typing():
 			await asyncio.sleep(2)
 			await ctx.send(message, delete_after=2)
-			await asyncio.sleep(30)
+			await asyncio.sleep(45)
       
 @quiet.command()
 async def unstop(ctx):
