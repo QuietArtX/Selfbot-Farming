@@ -4,11 +4,7 @@
 Beta Release Version For My Discord Selfbot
 
 ## Feature
-• Farming Unbeliavabot Global
-• OwO Farming ( Soon )
-• 24/7 In VC
-• Custom Activity Status
-For More Feature, Wait For the Next Update!!
+• Farming Unbeliavabot Global\n• OwO Farming ( Soon )\n• 24/7 In VC\n• Custom Activity Status\nFor More Feature, Wait For the Next Update!!
 
 
 <b>Buy Me A Cup Of Coffe
