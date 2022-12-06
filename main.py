@@ -27,7 +27,7 @@ except:
     
 #-------SETUP TOKEN
 prefix = "!!"
-secret_key ="MTAwMjEwODE2NjMyODI4NzI0Mw.GIYRcz.2PVUViBRcxBSc5jJf4vJtdu1IKYKVKoQP5oR2Q"
+secret_key = os.getenv("TOKEN")
 secret_pass = "Enter Your Password"
 #---I Recomennded For Enter Your Secret Pass
 username = "yourusername#1234"
