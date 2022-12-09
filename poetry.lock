@@ -118,18 +118,18 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "discord"
-version = "2.1.0"
+version = "1.7.3"
 description = "A mirror package for discord.py. Please install that instead."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-"discord.py" = ">=2.1.0"
+"discord.py" = ">=1.7.3"
 
 [[package]]
 name = "discord.py"
-version = "2.1.0"
+version = "1.7.3"
 description = "A Python wrapper for the Discord API"
 category = "main"
 optional = false
