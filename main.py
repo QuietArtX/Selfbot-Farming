@@ -205,6 +205,17 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
+async def countdown(ctx, t: int):
+    await ctx.send(f"Counting down from {t}s")
+
+    while t > 0:
+        t -= 1
+        # Sleep for 1 second
+        await asyncio.sleep(1)
+
+    await ctx.send("Countdown end reached")
+
+@quiet.command()
 async def pg(ctx):
     await ctx.message.delete()
     await ctx.send("> Selamat Pagi Everyonee\n> Jangan Lupa Sarapan\n> Semangat!! <a:GhostLove:849875645680451604>")
