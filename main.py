@@ -395,6 +395,46 @@ async def cnick(ctx, *, name: str=None):
             await ctx.send(f"> Nickname Has Been Change to **{name}**")
         except Exception as e:
             await ctx.send(f"Error: {e}")
+
+@quiet.command()
+async def qembed(ctx,*,text: str=None):
+    if text is None:
+        await ctx.send("Add some text sir")
+    else:
+        embed= discord.Embed(color= orange,description=f"{text}",timestamp=datetime.utcfromtimestamp(time.time()))
+        embed.set_footer(text=" made by 0x72")
+        try:
+            await ctx.send(embed=embed)
+        except discord.HTTPException:
+            await ctx.send(f"Error: This channel have embed links off!")
+
+def is_me(m):
+    return m.author == bot.user
+@bot.command()
+async def purge(ctx, amount:int=None):
+    try:
+        if amount is None:
+            await ctx.send("Invalid amount")
+        else:
+            deleted = await ctx.channel.purge(limit=amount, before=ctx.message, check=is_me)
+            asd = await ctx.send('Deleted {} message(s)'.format(len(deleted)))
+            await asyncio.sleep(3)
+            await asd.delete()
+    except:
+        try:
+            await asyncio.sleep(1)
+            c = 0
+            async for message in ctx.message.channel.history(limit=amount):
+                if message.author == bot.user:
+                    c += 1
+                    await message.delete()
+                else:
+                    pass
+            asd = await ctx.send('Deleted {} message(s)'.format((c)))
+            await asyncio.sleep(3)
+            await asd.delete()
+        except Exception as e:
+            await ctx.send(f"Error: {e}")
 #===========================================
 #-------------------END----------------------
 #============================================
