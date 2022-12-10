@@ -313,16 +313,6 @@ async def hack(ctx):
 #============================================
 #------------------UTILLS--------------------
 #============================================
-@quiet.command()
-async def cnick(ctx, username: str):
-    for member in ctx.guild.members:
-        if member.id == ctx.guild.owner_id:
-            pass
-        else:
-            await member.edit(nick=username)
-            print(f"> Changed **{member}**\"s Username To **{username}..**")
-            await asyncio.sleep(1)
-
 @quiet.event
 async def on_ready():
     with open("data.json", "r") as f:
@@ -392,6 +382,16 @@ async def ping(ctx):
     end = time.perf_counter()
     duration = (end - start) * 1000
     await message.edit(content=f"```Pong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms```")
+
+@quiet.command()
+async def cnick(ctx, *, message):
+    for member in ctx.guild.members:
+        if member.id == ctx.guild.owner_id:
+            pass
+        else:
+            await member.edit(nick=message)
+            print(f"> Changed **{member}**\"s Username To **{username}..**")
+            await asyncio.sleep(1)
 #============================================
 #-------------------END----------------------
 #============================================
