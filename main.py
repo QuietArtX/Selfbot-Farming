@@ -59,10 +59,10 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=N
 
 afk_stat = 0
 
-@bot.event
+@quiet.event
 async def on_message(message):
     global afk_stat
-    await bot.process_commands(message)
+    await quiet.process_commands(message)
     if afk_stat == 1:
         with open("config.json") as m:
             mesaje = json.load(m)["afk_message"]
@@ -70,7 +70,7 @@ async def on_message(message):
                 mesaje = "This is an autoresponse message! User is now AFK.."
                 
         if message.guild is None:
-            if message.author == bot.user:
+            if message.author == quiet.user:
                 return
             await message.channel.send(mesaje)
 #--------------------------------------------
@@ -410,7 +410,7 @@ async def cnick(ctx, *, message):
             print(f"> Changed **{member}**\"s Username To **{username}..**")
             await asyncio.sleep(1)
 
-@bot.command()
+@quiet.command()
 async def afk(ctx):
     global afk_stat
     if afk_stat == 0:
