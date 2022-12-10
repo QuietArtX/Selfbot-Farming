@@ -65,15 +65,15 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=N
 @quiet.command(pass_context=True)
 async def cmd(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
+    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
     
 #--------------------------------------------
 #--------------------------------------------
 
-@quiet.command(aliases=['cmdban', 'cmdkick'])
+@quiet.command(aliases=['cmdban', 'cmdkick', 'cmdgban'])
 async def cmdadmin(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗔𝗗𝗠𝗜𝗡\nrequires discord server admin permission\n\n𝗨𝗦𝗔𝗚𝗘\n• !!kick <member> = kick user form server\n• !!ban <member> = ban user from server\n\nNOTE : Requires admin permission to run this command```")
+    await ctx.send("```𝗔𝗗𝗠𝗜𝗡\nrequires discord server admin permission\n\n𝗨𝗦𝗔𝗚𝗘\n• !!kick <member> = kick user form server\n• !!ban <member> = ban user from server\n• !!gban <member> = global ban users from server the admin is in\n• purge <limit> = delete message by limit\n\nNOTE : Requires admin permission to run this command```")
 
 @quiet.command(aliases=['cmdprefix', 'cmdstatus'])
 async def cmdsetting(ctx):
@@ -85,10 +85,10 @@ async def cmdfun (ctx):
     await ctx.message.delete()
     await ctx.send("```𝗙𝗨𝗡\n to have fun with your server friends\n\n𝗨𝗦𝗔𝗚𝗘\n• !!pg = good morning greetings\n• !!sg = good afternoon\n• !!mlm = good night\n• !!hack = fake hacker\n• !!p = Assalamualaikum\n• !!l = Waalaikumsallam\n\nSelfbot By QuietArtx```")
     
-@quiet.command(aliases=['cmdvoice', 'cmdfarming', 'cmdping', 'cmdgleave'])
+@quiet.command(aliases=['cmdvoice', 'cmdfarming', 'cmdping', 'cmdgleave', 'cmdnick'])
 async def cmduttils(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗨𝗧𝗜𝗟𝗟𝗦\nvery useful command for you\n\n𝗩𝗢𝗜𝗖𝗘\n• !!join <channelid> = For join Voice Channel without without you joining\n• !!leave = exit the voice channel\n\n𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nfarming work Unbeliavaboat global, for OwO is coming\n• !!unb <cmdwork> <delaytime> = For Farming Work Unbeliavaboat\n• !!unstop = Stop the Farming\n\n𝗢𝗧𝗛𝗘𝗥\n• !!gleave <serverid> = leave from server only with server id\n• !!ping = For check your latency ping\n~~~```")
+    await ctx.send("```𝗨𝗧𝗜𝗟𝗟𝗦\nvery useful command for you\n\n𝗩𝗢𝗜𝗖𝗘\n• !!join <channelid> = For join Voice Channel without without you joining\n• !!leave = exit the voice channel\n\n𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nfarming work Unbeliavaboat global, for OwO is coming\n• !!unb <cmdwork> <delaytime> = For Farming Work Unbeliavaboat\n• !!unstop = Stop the Farming\n\n𝗢𝗧𝗛𝗘𝗥\n• !!gleave <serverid> = leave from server only with server id\n• !!ping = For check your latency ping\n• !!cnick = Change Your Nickname```")
 #============================================
 #-------------------END----------------------
 #============================================
@@ -97,6 +97,16 @@ async def cmduttils(ctx):
 #============================================
 #-------------------ADMIN--------------------
 #============================================
+@quiet.command()
+@commands.has_permissions(manage_messages=True)
+async def purge(ctx, limit: int):
+    await ctx.channel.purge(limit=limit)
+
+@purge.error
+async def purge_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("> You require the manage messages permission to use this command! ")
+
 @quiet.command()
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
@@ -125,6 +135,20 @@ async def unban(ctx, *, member):
             await ctx.guild.unban(user)
             await ctx.send(f'> Unbanned **{user.mention}** From This Server')
             return
+ 
+@quiet.command()
+async def gban(ctx, x: int):
+    await ctx.message.delete()
+    user, l = await quiet.fetch_user(x), []
+    msg = await ctx.send(f"Banning {user}")
+   
+    for g in quiet.guilds:
+        # ban user with given object
+        await g.ban(discord.Object(id=x))
+        await asyncio.sleep(1)
+        l.append(g.name)
+
+    await msg.edit(content=f"Global Banned!! **{user}** from **{', '.join(l)}**")
 #============================================
 #-------------------END----------------------
 #============================================
@@ -290,19 +314,16 @@ async def hack(ctx):
 #------------------UTILLS--------------------
 #============================================
 @quiet.command()
-async def info(ctx, member: discord.Member):
-    await ctx.message.delete()
-    c_delta = datetime.utcnow() - member.created_at
-    c_ago = datetime.fromtimestamp(c_delta.seconds, tz=timezone.utc).strftime("%H:%M:%S")
-    c_at = member.created_at.strftime("%c")
+async def cnick(ctx, username: str):
+    for member in ctx.guild.members:
+        if member.id == ctx.guild.owner_id:
+            pass
+        else:
+            await member.edit(nick=username)
+            print(f"> Changed **{member}**\"s Username To **{username}..**")
+            await asyncio.sleep(1)
 
-    # Getting join position by sorting the guild.members list with the member.joined_at method
-    join_pos = sorted(ctx.guild.members, key=lambda member: member.joined_at).index(member) + 1
-    
-    # Defining discord.Embed instance
-    msg = await ctx.send(f"> **Username**{member.name}#{member.discriminator}\n```Status: {getstatus.member}\nID: {member.id}\nAvatar: {member.avatar_url}```\n> Request By {author.name}")
-
-quiet.event
+@quiet.event
 async def on_ready():
     with open("data.json", "r") as f:
         data = json.load(f)
