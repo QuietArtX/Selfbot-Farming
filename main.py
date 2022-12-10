@@ -289,6 +289,20 @@ async def hack(ctx):
 #============================================
 #------------------UTILLS--------------------
 #============================================
+@quiet.command()
+async def info(ctx, member: discord.Member):
+    await ctx.message.delete()
+    c_delta = datetime.utcnow() - member.created_at
+    c_ago = datetime.fromtimestamp(c_delta.seconds, tz=timezone.utc).strftime("%H:%M:%S")
+    c_at = member.created_at.strftime("%c")
+
+    # Getting join position by sorting the guild.members list with the member.joined_at method
+    join_pos = sorted(ctx.guild.members, key=lambda member: member.joined_at).index(member) + 1
+    
+    # Defining discord.Embed instance
+    msg = await ctx.send(f"> **Username**{member.name}#{member.discriminator}\n```Status: {getstatus.member}\nID: {member.id}\nAvatar: {member.avatar_url}```")
+    await ctx.send(f"> Request By {author.name})
+
 quiet.event
 async def on_ready():
     with open("data.json", "r") as f:
