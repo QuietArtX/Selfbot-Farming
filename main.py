@@ -420,6 +420,19 @@ async def afk(ctx):
     elif afk_stat == 1:
         afk_stat -= 1
         await ctx.send("AFK mode **OFF**")
+
+@quiet.command()
+async def nickname(ctx, *, name: str=None):
+    if name is None:
+        await ctx.send(f"Usage: {ctx.prefix}rename <new name>")
+    elif len(name) < 1:
+        await ctx.send("Name need to have atleast 1 characters")
+    else:
+        try:
+            await ctx.author.edit(nick=name)
+            await ctx.send(f"Change nickname into `{name}`")
+        except Exception as e:
+            await ctx.send(f"Error: {e}")
 #===========================================
 #-------------------END----------------------
 #============================================
