@@ -56,23 +56,6 @@ def get_prefix(quiet,message):
     return prefixes 
 
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=None, shorten=None)
-
-afk_stat = 0
-
-@quiet.event
-async def on_message(message):
-    global afk_stat
-    await quiet.process_commands(message)
-    if afk_stat == 1:
-        with open("config.json") as m:
-            mesaje = json.load(m)["afk_message"]
-            if mesaje == "":
-                mesaje = "This is an autoresponse message! User is now AFK.."
-                
-        if message.guild is None:
-            if message.author == quiet.user:
-                return
-            await message.channel.send(mesaje)
 #--------------------------------------------
 #--------------------------------------------
 
@@ -82,7 +65,7 @@ async def on_message(message):
 @quiet.command(pass_context=True)
 async def cmd(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ !! ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
+    await ctx.send(f"```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ {ctx.prefix} ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
     
 #--------------------------------------------
 #--------------------------------------------
@@ -90,22 +73,22 @@ async def cmd(ctx):
 @quiet.command(aliases=['cmdban', 'cmdkick', 'cmdgban'])
 async def cmdadmin(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗔𝗗𝗠𝗜𝗡\nrequires discord server admin permission\n\n𝗨𝗦𝗔𝗚𝗘\n• !!kick <member> = kick user form server\n• !!ban <member> = ban user from server\n• !!gban <member> = global ban users from server the admin is in\n• purge <limit> = delete message by limit\n\nNOTE : Requires admin permission to run this command```")
+    await ctx.send(f"```𝗔𝗗𝗠𝗜𝗡\nRequires discord server admin permission\n\n𝗨𝗦𝗔𝗚𝗘\n• {ctx.prefix}kick <member> = kick user form server\n• {ctx.prefix}ban <member> = ban user from server\n• {ctx.prefix}gban <member> = global ban users from server the admin is in\n• {ctx.prefix}purge <limit> = delete message by limit\n\nNOTE : Requires admin permission to run this command```")
 
 @quiet.command(aliases=['cmdprefix', 'cmdstatus'])
 async def cmdsetting(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nFor Settings your selfbot\n\n𝗣𝗥𝗘𝗙𝗜𝗫\n• !!cprefix <newprefix> = Change your self prefix with cmd\n\n𝗦𝗧𝗔𝗧𝗨𝗦\n• !!game <usage> = For Playing Activity Status\n• !!stream <usage> = For Streaming Activity Status\n• !!listen <usage> = For Listening Activity Status\n• !!watch <usage> = For Watching Activity Status\n• !!rstatus = Remove your Activity Status\n\nfor example type : !!stream NAME USAGE | YOUR NICK, and cek your Activity```")
+    await ctx.send(f"```𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nFor Settings your selfbot\n\n𝗣𝗥𝗘𝗙𝗜𝗫\n• {ctx.prefix}cprefix <newprefix> = Change your self prefix with cmd\n\n𝗦𝗧𝗔𝗧𝗨𝗦\n• {ctx.prefix}game <usage> = For Playing Activity Status\n• {ctx.prefix}stream <usage> = For Streaming Activity Status\n• {ctx.prefix}listen <usage> = For Listening Activity Status\n• {ctx.prefix}watch <usage> = For Watching Activity Status\n• {ctx.prefix}rstatus = Remove your Activity Status\n\nfor example type : {ctx.prefix}stream NAME USAGE | YOUR NICK, and cek your Activity```")
     
 @quiet.command(aliases=['cmdpagi', 'cmdsiang', 'cmdsore', 'cmdmalam', 'cmdsalam'])
 async def cmdfun (ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗙𝗨𝗡\n to have fun with your server friends\n\n𝗨𝗦𝗔𝗚𝗘\n• !!pg = good morning greetings\n• !!sg = good afternoon\n• !!mlm = good night\n• !!hack = fake hacker\n• !!p = Assalamualaikum\n• !!l = Waalaikumsallam\n\nSelfbot By QuietArtx```")
+    await ctx.send(f"```𝗙𝗨𝗡\n To have fun with your server friends\n\n𝗨𝗦𝗔𝗚𝗘\n• {ctx.prefix}pg = good morning greetings\n• {ctx.prefix}sg = good afternoon\n• {ctx.prefix}mlm = good night\n• {ctx.prefix}hack = fake hacker\n• {ctx.prefix}p = Assalamualaikum\n• {ctx.prefix}l = Waalaikumsallam\n\nSelfbot By QuietArtx```")
     
 @quiet.command(aliases=['cmdvoice', 'cmdfarming', 'cmdping', 'cmdgleave', 'cmdnick'])
 async def cmduttils(ctx):
     await ctx.message.delete()
-    await ctx.send("```𝗨𝗧𝗜𝗟𝗟𝗦\nvery useful command for you\n\n𝗩𝗢𝗜𝗖𝗘\n• !!join <channelid> = For join Voice Channel without without you joining\n• !!leave = exit the voice channel\n\n𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nfarming work Unbeliavaboat global, for OwO is coming\n• !!unb <cmdwork> <delaytime> = For Farming Work Unbeliavaboat\n• !!unstop = Stop the Farming\n\n𝗢𝗧𝗛𝗘𝗥\n• !!gleave <serverid> = leave from server only with server id\n• !!ping = For check your latency ping\n• !!cnick = Change Your Nickname```")
+    await ctx.send(f"```𝗨𝗧𝗜𝗟𝗟𝗦\nVery useful command for you\n\n𝗩𝗢𝗜𝗖𝗘\n• {ctx.prefix}join <channelid> = For join Voice Channel without without you joining\n• {ctx.prefix}leave = exit the voice channel\n\n𝗙𝗔𝗥𝗠𝗜𝗡𝗚\nfarming work Unbeliavaboat global, for OwO is coming\n• {ctx.prefix}unb <cmdwork> <delaytime> = For Farming Work Unbeliavaboat\n• {ctx.prefix}unstop = Stop the Farming\n\n𝗢𝗧𝗛𝗘𝗥\n• {ctx.prefix}gleave <serverid> = leave from server only with server id\n• {ctx.prefix}ping = For check your latency ping\n• {ctx.prefix}cnick = Change Your Nickname```")
 #============================================
 #-------------------END----------------------
 #============================================
@@ -400,37 +383,17 @@ async def ping(ctx):
     duration = (end - start) * 1000
     await message.edit(content=f"```Pong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms```")
 
-@quiet.command()
-async def cnick(ctx, *, message):
-    for member in ctx.guild.members:
-        if member.id == ctx.guild.owner_id:
-            pass
-        else:
-            await member.edit(nick=message)
-            print(f"> Changed **{member}**\"s Username To **{username}..**")
-            await asyncio.sleep(1)
 
 @quiet.command()
-async def afk(ctx):
-    global afk_stat
-    if afk_stat == 0:
-        afk_stat += 1
-        await ctx.send("> AFK Mode **ON**")
-            
-    elif afk_stat == 1:
-        afk_stat -= 1
-        await ctx.send("AFK mode **OFF**")
-
-@quiet.command()
-async def nickname(ctx, *, name: str=None):
+async def cnick(ctx, *, name: str=None):
     if name is None:
-        await ctx.send(f"Usage: {ctx.prefix}rename <new name>")
+        await ctx.send(f"```Usage: {ctx.prefix}cnick <new name>```")
     elif len(name) < 1:
         await ctx.send("Name need to have atleast 1 characters")
     else:
         try:
             await ctx.author.edit(nick=name)
-            await ctx.send(f"Change nickname into `{name}`")
+            await ctx.send(f"> Nickname Has Been Change to **{name}**")
         except Exception as e:
             await ctx.send(f"Error: {e}")
 #===========================================
