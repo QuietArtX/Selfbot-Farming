@@ -410,7 +410,7 @@ async def qembed(ctx,*,text: str=None):
 
 def is_me(m):
     return m.author == bot.user
-@bot.command()
+@quiet.command()
 async def urpurge(ctx, amount:int=None):
     try:
         if amount is None:
@@ -425,7 +425,7 @@ async def urpurge(ctx, amount:int=None):
             await asyncio.sleep(1)
             c = 0
             async for message in ctx.message.channel.history(limit=amount):
-                if message.author == bot.user:
+                if message.author == quiet.user:
                     c += 1
                     await message.delete()
                 else:
