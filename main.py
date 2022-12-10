@@ -300,8 +300,7 @@ async def info(ctx, member: discord.Member):
     join_pos = sorted(ctx.guild.members, key=lambda member: member.joined_at).index(member) + 1
     
     # Defining discord.Embed instance
-    msg = await ctx.send(f"> **Username**{member.name}#{member.discriminator}\n```Status: {getstatus.member}\nID: {member.id}\nAvatar: {member.avatar_url}```")
-    await ctx.send(f"> Request By {author.name})
+    msg = await ctx.send(f"> **Username**{member.name}#{member.discriminator}\n```Status: {getstatus.member}\nID: {member.id}\nAvatar: {member.avatar_url}```\n> Request By {author.name}")
 
 quiet.event
 async def on_ready():
