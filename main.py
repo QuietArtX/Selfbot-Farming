@@ -1,4 +1,3 @@
-
 #╔═══╦╗─╔╦══╦═══╦════╦═══╦═══╦════╦═╗╔═╗
 #║╔═╗║║─║╠╣╠╣╔══╣╔╗╔╗║╔═╗║╔═╗║╔╗╔╗╠╗╚╝╔╝
 #║║─║║║─║║║║║╚══╬╝║║╚╣║─║║╚═╝╠╝║║╚╝╚╗╔╝
@@ -348,7 +347,8 @@ async def leave(ctx):
         json.dump({"guild":None,"channel":None}, f)
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
-    
+  
+@quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
 	await ctx.message.delete()
 	await ctx.send('Farming **Work** Unbeliavabot **Enabled**!\n> Bypass Global = ON')
@@ -367,8 +367,8 @@ async def unstop(ctx):
 	global dmcs
 	dmcs = False
 
-quiet.command()
-async def gleave(ctx, guild_id):
+@quiet.command()
+async def sleave(ctx, guild_id):
     await quiet.get_guild(int(guild_id)).leave()
     await ctx.send("> **Jurus Ninjaaaa..**")
     await asyncio.sleep(3)
@@ -382,7 +382,6 @@ async def ping(ctx):
     end = time.perf_counter()
     duration = (end - start) * 1000
     await message.edit(content=f"```Pong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms```")
-
 
 @quiet.command()
 async def cnick(ctx, *, name: str=None):
