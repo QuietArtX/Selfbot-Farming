@@ -411,7 +411,7 @@ async def qembed(ctx,*,text: str=None):
 def is_me(m):
     return m.author == bot.user
 @bot.command()
-async def purge(ctx, amount:int=None):
+async def urpurge(ctx, amount:int=None):
     try:
         if amount is None:
             await ctx.send("Invalid amount")
