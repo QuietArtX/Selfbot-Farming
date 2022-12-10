@@ -401,7 +401,7 @@ async def qembed(ctx,*,text: str=None):
     if text is None:
         await ctx.send("Add some text sir")
     else:
-        embed= discord.Embed(color= orange,description=f"{text}",timestamp=datetime.utcfromtimestamp(time.time()))
+        embed= discord.Embed(description=f"{text}",timestamp=datetime.utcfromtimestamp(time.time()))
         embed.set_footer(text=" made by 0x72")
         try:
             await ctx.send(embed=embed)
