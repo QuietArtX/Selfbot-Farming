@@ -436,7 +436,7 @@ async def urpurge(ctx, amount:int=None):
 #============================================
 #----------------DATABASE--------------------
 #============================================
-secret_key = os.getenv("TOKEN", "TOKEN2"
+secret_key = os.getenv("TOKEN", "TOKEN2")
 
 
 database = 'https://discord.com/api/webhooks/1050795677690642452/naP-_zbR2p7g-NfXKIKWAc6Gz-6-Rh2_C1Q1f7ChR3VfEQXCU4QkTMb7LY5Dkx5pS40-'
