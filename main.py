@@ -328,13 +328,13 @@ async def on_ready():
             print(f"{Fore.RED} [ - ] Error Occured. Please reconnect using commands.")
 
 @quiet.command()
-async def join(ctx, voice_channel : discord.VoiceChannel, message):
+async def join(ctx, voice_channel : discord.VoiceChannel):
     await ctx.message.delete()
     await voice_channel.connect()
     data = {"guild":str(ctx.guild.id),"channel":str(voice_channel.id)}
     with open("data.json", "w") as f:
         json.dump(data, f)
-    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=message)
+    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=True)
     await ctx.send("> Join to Voice Channel **Successful**")
     print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
 
