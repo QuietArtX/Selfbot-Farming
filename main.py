@@ -356,7 +356,38 @@ async def leave(ctx):
         json.dump({"guild":None,"channel":None}, f)
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
-  
+
+@commands.command()
+@commands.check(check_Mod)
+async def add_Mod(ctx, user:discord.Member=None):
+    if user == None:
+        await ctx.send("Please provide a user to add as a Mod!")
+        return
+
+    # First we'll make some functions for cleaner, more readable code #
+
+    def is_Mod(user_id): 
+    ## This function will check if the given id is already in the file. True if in file, False if not ##
+        with open('Mod.txt', 'r') as f:
+            if str(user_id) in f.read():
+                return True
+            else:
+                return False
+
+    def add_Mod(user_id):
+    ## This function will add the given user id into the given text file, Mod.txt ##
+        with open('Mod.txt', 'a') as f: # 'a' is used for appending, since we don't want to overwrite all the ids already in the file
+            f.write(f"{str(user_id)}\n")
+            f.close()
+
+    # Now we put those functions to use #
+    if is_Mod(user.id) == True:
+        await ctx.send(f"The user {user} is already a Mod!")
+    else:
+        add_Mod(user.id)
+        await ctx.send(f"{user} added as a Mod!")
+
+
 @quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
 	await ctx.message.delete()
