@@ -356,9 +356,9 @@ async def levelx(ctx, amount: typing.Optional[int] = 0):
 	dmcs = True
 	while dmcs:
 		async with ctx.typing():
-		                   	await asyncio.sleep(2)
+		        await asyncio.sleep(2)
                         await ctx.send("Dksbskdnsjdj")
-			                  await asyncio.sleep(amount)
+			await asyncio.sleep(amount)
                         await ctx.send("skbfisbeid")
                         await asyncio.sleep(amount)
                         await ctx.send("lu aman gua amin")
