@@ -50,7 +50,7 @@ def getstatus(m):
 
 def check_Mod(ctx):
 
-    with open('owner.txt') as f:
+    with open("owner.txt", "r") as f:
 
         if str(ctx.author.id) in f.read():
 
