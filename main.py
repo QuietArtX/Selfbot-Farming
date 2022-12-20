@@ -42,11 +42,6 @@ except:
 #--------------------------------------------
 prefix = "!!"
 username = "yourusername#1234"
-modList = [1048214159877226547, 1002108166328287243]
-
-def check_Mod(ctx):
-    if ctx.author.id in modList:
-        return ctx.author.id in modList
 
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
@@ -353,10 +348,28 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
+@quiet.command()  
+async def levelx(ctx, amount: typing.Optional[int] = 0):
+	await ctx.message.delete()
+	await ctx.send('> **Farming Level Dullsss**')
+	global dmcs
+	dmcs = True
+	while dmcs:
+		async with ctx.typing():
+			await asyncio.sleep(2)
+			await ctx.send("Dksbskdnsjdj")
+			await asyncio.sleep(amount)
+                        await ctx.send("skbfisbeid")
+                        await asyncio.sleep(amount)
+                        await ctx.send("lu aman gua amin")
+                        await asyncio.sleep(amount)
+
 @quiet.command()
-@quiet.check(check_Mod)
-async def test(ctx):
-    await ctx.send("You are a mod!")
+async def levelxstop(ctx):
+	await ctx.message.delete()
+	await ctx.send('> **Disabled**')
+	global dmcs
+	dmcs = False
 
 @quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
