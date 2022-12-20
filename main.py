@@ -349,7 +349,7 @@ async def leave(ctx):
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
 @quiet.command()  
-async def unb(ctx, amount: typing.Optional[int] = 0):
+async def levelx(ctx, amount: typing.Optional[int] = 0):
 	await ctx.message.delete()
 	await ctx.send('> Farming ON')
 	global level
