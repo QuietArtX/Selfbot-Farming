@@ -349,20 +349,17 @@ async def leave(ctx):
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
 @quiet.command()  
-async def levelx(ctx, amount: typing.Optional[int] = 0):
+async def unb(ctx, amount: typing.Optional[int] = 0):
 	await ctx.message.delete()
-	await ctx.send('> **Farming Level Dullsss**')
+	await ctx.send('> Farming **Work** Unbeliavabot **Enabled**!\n> Bypass Global = ON')
 	global dmcs
 	dmcs = True
 	while dmcs:
 		async with ctx.typing():
-		        await asyncio.sleep(2)
-                        await ctx.send("Dksbskdnsjdj")
+			await asyncio.sleep(2)
+			await ctx.send("luaman gua amin")
+                        await ctx.send("wloewloewleo")
 			await asyncio.sleep(amount)
-                        await ctx.send("skbfisbeid")
-                        await asyncio.sleep(amount)
-                        await ctx.send("lu aman gua amin")
-                        await asyncio.sleep(amount)
 
 @quiet.command()
 async def levelxstop(ctx):
