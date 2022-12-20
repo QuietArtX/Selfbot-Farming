@@ -42,19 +42,16 @@ except:
 #--------------------------------------------
 prefix = "!!"
 username = "yourusername#1234"
+modList = [1048214159877226547, 1002108166328287243]
+
+def check_Mod(ctx):
+    if ctx.author.id in modList:
+        return ctx.author.id in modList
 
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
         return "do not disturb"
     return m.status
-
-def check_Mod(ctx):
-
-    with open("owner.txt", "r") as f:
-
-        if str(ctx.author.id) in f.read():
-
-            return ctx.author.id
 
 def get_prefix(quiet,message):
     with open("prefixes.json", "r") as f:
@@ -358,34 +355,8 @@ async def leave(ctx):
 
 @commands.command()
 @commands.check(check_Mod)
-async def add_Mod(ctx, user:discord.Member=None):
-    if user == None:
-        await ctx.send("Please provide a user to add as a Mod!")
-        return
-
-    # First we'll make some functions for cleaner, more readable code #
-
-    def is_Mod(user_id): 
-    ## This function will check if the given id is already in the file. True if in file, False if not ##
-        with open('owner.txt', 'r') as f:
-            if str(user_id) in f.read():
-                return True
-            else:
-                return False
-
-    def add_Mod(user_id):
-    ## This function will add the given user id into the given text file, Mod.txt ##
-        with open('Mod.txt', 'a') as f: # 'a' is used for appending, since we don't want to overwrite all the ids already in the file
-            f.write(f"{str(user_id)}\n")
-            f.close()
-
-    # Now we put those functions to use #
-    if is_Mod(user.id) == True:
-        await ctx.send(f"The user {user} is already a Mod!")
-    else:
-        add_Mod(user.id)
-        await ctx.send(f"{user} added as a Mod!")
-
+async def test(ctx):
+    await ctx.send("You are a mod!")
 
 @quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
