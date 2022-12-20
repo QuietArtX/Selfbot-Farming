@@ -356,7 +356,7 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-@quiet.command()
+@commands.command()
 @commands.check(check_Mod)
 async def add_Mod(ctx, user:discord.Member=None):
     if user == None:
