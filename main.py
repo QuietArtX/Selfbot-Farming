@@ -336,7 +336,6 @@ async def on_ready():
             print(f"{Fore.RED} [ - ] Error Occured. Please reconnect using commands.")
 
 @quiet.command()
-@quiet.check(check_Mod)
 async def join(ctx, voice_channel : discord.VoiceChannel):
     await ctx.message.delete()
     await voice_channel.connect()
