@@ -356,7 +356,7 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-@commands.command()
+@quiet.command()
 @commands.check(check_Mod)
 async def add_Mod(ctx, user:discord.Member=None):
     if user == None:
@@ -367,7 +367,7 @@ async def add_Mod(ctx, user:discord.Member=None):
 
     def is_Mod(user_id): 
     ## This function will check if the given id is already in the file. True if in file, False if not ##
-        with open('Mod.txt', 'r') as f:
+        with open('owner.txt', 'r') as f:
             if str(user_id) in f.read():
                 return True
             else:
