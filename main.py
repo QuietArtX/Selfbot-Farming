@@ -356,11 +356,9 @@ async def unb(ctx, amount: typing.Optional[int] = 0):
 	level = True
 	while level:
 		async with ctx.typing():
-			await asyncio.sleep(2)
-			await ctx.send("luaman gua amin")
                         await asyncio.sleep(2)
+                        await ctx.send("luaman gua amin")
                         await ctx.send("wloewloewleo")
-                        await asyncio.sleep(2)
                         await ctx.send("ssosjowdjsls)
 			await asyncio.sleep(amount)
 
