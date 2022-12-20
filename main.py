@@ -359,7 +359,7 @@ async def unb(ctx, amount: typing.Optional[int] = 0):
                         await asyncio.sleep(2)
                         await ctx.send("luaman gua amin")
                         await ctx.send("wloewloewleo")
-                        await ctx.send("ssosjowdjsls)
+                        await ctx.send("ssosjowdjsls")
 			await asyncio.sleep(amount)
 
 @quiet.command()
