@@ -48,6 +48,14 @@ def getstatus(m):
         return "do not disturb"
     return m.status
 
+def check_Mod(ctx):
+
+    with open('owner.txt') as f:
+
+        if str(ctx.author.id) in f.read():
+
+            return ctx.author.id
+
 def get_prefix(quiet,message):
     with open("prefixes.json", "r") as f:
       prefixes = json.load(f)
