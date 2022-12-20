@@ -351,22 +351,25 @@ async def leave(ctx):
 @quiet.command()  
 async def unb(ctx, amount: typing.Optional[int] = 0):
 	await ctx.message.delete()
-	await ctx.send('> Farming **Work** Unbeliavabot **Enabled**!\n> Bypass Global = ON')
-	global dmcs
-	dmcs = True
-	while dmcs:
+	await ctx.send('> Farming ON')
+	global level
+	level = True
+	while level:
 		async with ctx.typing():
 			await asyncio.sleep(2)
 			await ctx.send("luaman gua amin")
+                        await asyncio.sleep(2)
                         await ctx.send("wloewloewleo")
+                        await asyncio.sleep(2)
+                        await ctx.send("ssosjowdjsls)
 			await asyncio.sleep(amount)
 
 @quiet.command()
 async def levelxstop(ctx):
 	await ctx.message.delete()
 	await ctx.send('> **Disabled**')
-	global dmcs
-	dmcs = False
+	global level
+	level = False
 
 @quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
