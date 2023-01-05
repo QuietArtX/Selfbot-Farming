@@ -228,6 +228,10 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
+async def ml(ctx):
+      await ctx.send("**My ID Mobile Legends**\n> Nickname : Mystic Excaliburnn.\n> ID : 498484453 (8010)")
+
+@quiet.command()
 async def countdown(ctx, t: int):
     await ctx.send(f"Counting down from {t}s")
 
