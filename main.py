@@ -465,7 +465,7 @@ async def userinfo(ctx, member: discord.Member):
     message += f"> Highest Role: **{member.top_role}**\n"
     message += f"> Joined At: **{member.joined_at}**\n"
     message += f"> Created At: **{member.created_at}**\n"
-    message += f"> Avatar: {member.avatar}"
+    message += f"> Avatar: {member.avatar_url}"
     await ctx.send(message)
     
 @quiet.command()
