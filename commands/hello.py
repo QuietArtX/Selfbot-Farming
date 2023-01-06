@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-quiet = commands.Bot(command_prefix='!!')
+quiet = commands.Bot(command_prefix='!!', self_bot=True)
 
 @quiet.command()
 async def hello(ctx):
