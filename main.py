@@ -494,8 +494,8 @@ async def serverinfo(ctx):
     await ctx.send(message)
 
 @quiet.command()
-async def weather(ctx, *, location):
-    api_key = '2fa8ed4b393c78a54991047f2ac6bc93'
+async def weather(ctx, *, location: str):
+    api_key = 'YOUR_API_KEY'
     base_url = 'http://api.openweathermap.org/data/2.5/weather?'
     complete_url = base_url + 'q=' + location + '&appid=' + api_key
     response = requests.get(complete_url)
@@ -507,7 +507,13 @@ async def weather(ctx, *, location):
         temp_max = data['main']['temp_max']
         humidity = data['main']['humidity']
         wind_speed = data['wind']['speed']
-        await ctx.send(f'Weather in {location}: {weather}\nTemperature: {temp}°F\nLow: {temp_min}°F\nHigh: {temp_max}°F\nHumidity: {humidity}%\nWind Speed: {wind_speed} mph')
+        message = f'Weather in {location}:\n'
+        message += f'Condition: {weather}\n'
+        message += f'Temperature: {temp}°F\n'
+        message += f'Low/High: {temp_min}°F/{temp_max}°F\n'
+        message += f'Humidity: {humidity}%\n'
+        message += f'Wind Speed: {wind_speed} mph'
+        await ctx.send(message)
     else:
         await ctx.send('Location not found')
 #===========================================
