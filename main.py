@@ -55,7 +55,6 @@ def get_prefix(quiet,message):
 
 start_time = time.time()
 
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=None, shorten=None)
 command_files = [file for file in os.listdir('commands') if file.endswith('.py')]
 
 for file in command_files:
