@@ -458,7 +458,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
     if not member:
         member = ctx.author
     mutual_servers = []
-    for server in client.guilds:
+    for server in quiet.guilds:
         if server.get_member(member.id):
             mutual_servers.append(server.name)
     message = f"**〝 USER INFO 〞**\n"
