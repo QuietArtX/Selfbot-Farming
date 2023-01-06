@@ -15,7 +15,7 @@ import sys
 import asyncio
 import json
 from webserver import keep_alive
-import importlib
+from importlib import commands
 import os
 
 quiet = discord.Client()
