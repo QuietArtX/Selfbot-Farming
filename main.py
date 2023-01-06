@@ -458,12 +458,17 @@ async def userinfo(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send("*Getting UserInfo...*", delete_after=3)
     await asyncio.sleep(3)
+    for server in quiet.guilds:
+        if server.get_member(member.id):
+            mutual_servers.append(server.name)
     message = f"**〝 USER INFO 〞**\n"
     message += f"> ▸ Name: **{member.name}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
-    message += f"> ▸ Mutual Server: **{member.mutual_guilds}**\n"
-    message += f"> ▸ Highest Role: **{member.top_role}**\n"
+    if mutual_servers:
+        message += f'> ▸ Mutual Server:\n'
+        for server in mutual_servers:
+            message += f'```▸ {server}```\n'
     message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
     message += f"> ▸ Avatar: {member.avatar_url}"
