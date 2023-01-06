@@ -461,14 +461,14 @@ async def userinfo(ctx, member: discord.Member):
     mutual_servers = []
     for server in quiet.guilds:
         if server.get_member(member.id):
-            mutual_servers.append(server.name)
+            mutual_guilds.append(guild.name)
     message = f"**〝 USER INFO 〞**\n"
     message += f"> ▸ Name: **{member.name}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
     if mutual_servers:
         message += f'> ▸ Mutual Server:\n'
-        for server in mutual_servers:
+        for server in mutual_guilds:
             message += f'```▸ {server}```\n'
     message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
