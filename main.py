@@ -56,7 +56,7 @@ def get_prefix(quiet,message):
 
 start_time = time.time()
 
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=None, shorten=None)
+quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
 #--------------------------------------------
 #--------------------------------------------
 
@@ -64,10 +64,9 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=N
 #---------------HELP COMMNAND----------------
 #============================================
 @quiet.command(pass_context=True)
-async def cmd(ctx):
+async def help(ctx, description):
     await ctx.message.delete()
     await ctx.send(f"```𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ {ctx.prefix} ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting```", delete_after=15)
-    
 #--------------------------------------------
 #--------------------------------------------
 
@@ -443,7 +442,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
         if server.get_member(member.id):
             mutual_servers.append(server.name)
     message = f"**〝 USER INFO 〞**\n"
-    message += f"> ▸ Name: **{member.name}**\n"
+    message += f"> ▸ Name: **{member.nick}#{member.discriminator}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
     if mutual_servers:
@@ -470,6 +469,9 @@ async def serverinfo(ctx):
     owner = server.owner
     owner_id = server.owner_id
     icon_url = server.icon_url
+    created = server.created_at
+    level = server.premium_tier
+    tboost = server.premium_subscription_count
     
 
     user_name = member.name
@@ -479,9 +481,12 @@ async def serverinfo(ctx):
     message = (f"> **〝 SERVER INFO 〞**\n"
                f"> ▸ Server name: **{name}**\n"
                f"> ▸ Server ID: **{id}**\n"
-               f"> ▸ Member count: {member_count}\n"
-               f"> ▸ Owner: {owner}\n"
-               f"> ▸ Owner ID: {owner_id}\n"
+               f"> ▸ Level Boost: **{level}\n"
+               f"> ▸ Total Boost: **{tboost}**\n"
+               f"> ▸ All Members: **{member_count}**\n"
+               f"> ▸ Owner: **{owner}**\n"
+               f"> ▸ Owner ID: **{owner_id}**\n"
+               f"> ▸ Created At: **{created}**
                f"> ▸ Icon: ||{icon_url}||")
     await ctx.send(message)
 
@@ -493,7 +498,7 @@ async def uptime(ctx):
     uptime_minutes, uptime_seconds = divmod(uptime, 60)
     uptime_hours, uptime_minutes = divmod(uptime_minutes, 60)
     uptime_days, uptime_hours = divmod(uptime_hours, 24)
-    message = f'``` I have been running for :'
+    message = f'``` I have been running for:\n  ▸'
     if uptime_days > 0:
         message += f'{uptime_days} Days, '
     if uptime_hours > 0:
@@ -502,6 +507,16 @@ async def uptime(ctx):
         message += f'{uptime_minutes} Minutes, '
     message += f'{uptime_seconds} Seconds. ```'
     await ctx.send(message)
+    
+@quiet.command()  
+async def weather(ctx, location):
+    response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={location}&appid=28bf153817808a7c28697f2b4bbbff39')
+    weather_data = response.json()
+    temperature = weather_data['main']['temp']
+    humidity = weather_data['main']['humidity']
+    wind_speed = weather_data['wind']['speed']
+    # Send a message to the channel with the weather information
+    await ctx.send(f'The weather in {location} is currently {temperature}°F, with {humidity}% humidity and {wind_speed} mph winds.')
 #===========================================
 #-------------------END----------------------
 #============================================
