@@ -456,7 +456,7 @@ async def urpurge(ctx, amount:int=None):
             await ctx.send(f"Error: {e}")
             
 @quiet.command()
-async def userinfo(ctx, *, mention: str)
+async def userinfo(ctx, *, mention: str):
     user = await quiet.fetch_user(mention)
     message = f"**〝 USER INFO 〞**\n"
     message += f"> ▸ Name: **{member.name}**\n"
