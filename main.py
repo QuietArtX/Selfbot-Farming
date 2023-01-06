@@ -454,9 +454,18 @@ async def urpurge(ctx, amount:int=None):
             await asd.delete()
         except Exception as e:
             await ctx.send(f"Error: {e}")
- 
+            
 @quiet.command()
-async def userinfo(ctx, *, member: discord.Member = None):
+async def userinfo(ctx, *, mention: str)
+    user = await quiet.fetch_user(mention)
+    message = f"**〝 USER INFO 〞**\n"
+    message += f"> ▸ Name: **{member.name}**\n"
+    message += f"> ▸ ID: **{member.id}**\n"
+    message += f"> ▸ Status: **{member.status}**"
+    await ctx.send(message)
+
+@quiet.command()
+async def memberinfo(ctx, *, member: discord.Member = None):
     if not member:
         member = ctx.author
     mutual_servers = []
@@ -471,7 +480,6 @@ async def userinfo(ctx, *, member: discord.Member = None):
         message += f'> ▸ Mutual Server:\n'
         for server in mutual_servers:
             message += f'```▸ {server}```\n'
-    message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
     message += f"> ▸ Avatar: ||{member.avatar_url}||"
     await ctx.send(message)
