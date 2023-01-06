@@ -28,8 +28,6 @@ from Quiet import uptime
 
 quiet = discord.Client()
 
-command_files = [file for file in os.listdir('Quiet') if file.endswith('.py')]
-
 # Import and load each command file
 for file in command_files:
     importlib.import_module('uptime')
