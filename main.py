@@ -24,12 +24,14 @@ import re
 import typing
 import time
 import importlib
-from Quiet import uptime
+from quiet import uptime
 
 quiet = discord.Client()
 
+command_files = [file for file in os.listdir('quiet') if file.endswith('.py')]
 # Import and load each command file
-importlib.import_module('uptime')
+for file in command_files:
+    importlib.import_module(f'quiet.{file[:-3]}')
 print(f'''
 {Fore.BLUE}
 ░█████╗░██╗░░░██╗████████╗░█████╗░
