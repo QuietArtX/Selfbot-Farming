@@ -97,15 +97,6 @@ async def cmduttils(ctx):
 #-------------------ADMIN--------------------
 #============================================
 @quiet.command()
-async def userinfo(ctx, member: discord.Member):
-    message = f"User Info - {member.name}\n"
-    message += f"ID: {member.id}\n"
-    message += f"Status: {member.status}\n"
-    message += f"Highest Role: {member.top_role}\n"
-    message += f"Joined At: {member.joined_at}"
-    await ctx.send(message)
-
-@quiet.command()
 @commands.has_permissions(manage_messages=True)
 async def purge(ctx, limit: int):
     await ctx.channel.purge(limit=limit)
@@ -461,6 +452,64 @@ async def urpurge(ctx, amount:int=None):
             await asd.delete()
         except Exception as e:
             await ctx.send(f"Error: {e}")
+ 
+@quiet.command()
+async def userinfo(ctx, member: discord.Member):
+    await ctx.message.delete()
+    await ctx.send("*Getting UserInfo...*", delete_after=3)
+    await asyncio.sleep(3)
+    message += f"**〝 USER INFO 〞**- {member.name}==\n"
+    message += f"> ID: **{member.id}**\n"
+    message += f"> Status: **{member.status}**\n"
+    message += f"> Mutual Server: **{mutual.guilds}**\n"
+    message += f"> Highest Role: **{member.top_role}**\n"
+    message += f"> Joined At: **{member.joined_at}**\n"
+    message += f"> Created At: **{member.created_at}**\n"
+    message += f"> Avatar: {member.avatar}"
+    await ctx.send(message)
+    
+@quiet.command()
+async def serverinfo(ctx):
+    await ctx.message.delete()
+    await ctx.send("*Getting ServerInfo*", delete_after=3)
+    await asyncio.sleep(3)
+    server = ctx.guild
+
+    member = ctx.author
+
+    name = server.name
+    id = server.id
+    member_count = len(server.members)
+
+    user_name = member.name
+    user_id = member.id
+    user_highest_role = member.top_role.name
+
+    message = (f"> Server name: **{name}**\n"
+               f"> Server ID: **{id}**\n"
+               f"> Member count: {member_count}\n"
+               f"> Your name: {user_name}\n"
+               f"> Your ID: {user_id}\n"
+               f"> Your highest role: {user_highest_role}")
+    await ctx.send(message)
+
+@quiet.command()
+async def weather(ctx, *, location):
+    api_key = '2fa8ed4b393c78a54991047f2ac6bc93'
+    base_url = 'http://api.openweathermap.org/data/2.5/weather?'
+    complete_url = base_url + 'q=' + location + '&appid=' + api_key
+    response = requests.get(complete_url)
+    data = response.json()
+    if data['cod'] != '404':
+        weather = data['weather'][0]['main']
+        temp = data['main']['temp']
+        temp_min = data['main']['temp_min']
+        temp_max = data['main']['temp_max']
+        humidity = data['main']['humidity']
+        wind_speed = data['wind']['speed']
+        await ctx.send(f'Weather in {location}: {weather}\nTemperature: {temp}°F\nLow: {temp_min}°F\nHigh: {temp_max}°F\nHumidity: {humidity}%\nWind Speed: {wind_speed} mph')
+    else:
+        await ctx.send('Location not found')
 #===========================================
 #-------------------END----------------------
 #============================================
