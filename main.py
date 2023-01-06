@@ -486,7 +486,7 @@ async def serverinfo(ctx):
                f"> ▸ All Members: **{member_count}**\n"
                f"> ▸ Owner: **{owner}**\n"
                f"> ▸ Owner ID: **{owner_id}**\n"
-               f"> ▸ Created At: **{created}**
+               f"> ▸ Created At: **{created}**\n"
                f"> ▸ Icon: ||{icon_url}||")
     await ctx.send(message)
 
