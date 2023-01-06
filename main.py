@@ -458,14 +458,15 @@ async def userinfo(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send("*Getting UserInfo...*", delete_after=3)
     await asyncio.sleep(3)
-    message = f"**〝 USER INFO 〞**- {member.name}==\n"
-    message += f"> ID: **{member.id}**\n"
-    message += f"> Status: **{member.status}**\n"
-    message += f"> Mutual Server: **{member.mutual_guilds}**\n"
-    message += f"> Highest Role: **{member.top_role}**\n"
-    message += f"> Joined At: **{member.joined_at}**\n"
-    message += f"> Created At: **{member.created_at}**\n"
-    message += f"> Avatar: {member.avatar_url}"
+    message = f"**〝 USER INFO 〞**\n"
+    message += f"> ▸ Name: **{member.name}**\n"
+    message += f"> ▸ ID: **{member.id}**\n"
+    message += f"> ▸ Status: **{member.status}**\n"
+    message += f"> ▸ Server: **{member.mutual_guilds}**\n"
+    message += f"> ▸ Highest Role: **{member.top_role}**\n"
+    message += f"> ▸ Joined At: **{member.joined_at}**\n"
+    message += f"> ▸ Created At: **{member.created_at}**\n"
+    message += f"> ▸ Avatar: {member.avatar_url}"
     await ctx.send(message)
     
 @quiet.command()
@@ -480,17 +481,22 @@ async def serverinfo(ctx):
     name = server.name
     id = server.id
     member_count = len(server.members)
+    owner = server.owner
+    owner_id = server.owner_id
+    icon = server.icon
+    
 
     user_name = member.name
     user_id = member.id
     user_highest_role = member.top_role.name
 
-    message = (f"> Server name: **{name}**\n"
-               f"> Server ID: **{id}**\n"
-               f"> Member count: {member_count}\n"
-               f"> Your name: {user_name}\n"
-               f"> Your ID: {user_id}\n"
-               f"> Your highest role: {user_highest_role}")
+    message = (f"> **〝 SERVER INFO 〞**\n"
+               f"> ▸ Server name: **{name}**\n"
+               f"> ▸ Server ID: **{id}**\n"
+               f"> ▸ Member count: {member_count}\n"
+               f"> ▸ Owner: {owner}\n"
+               f"> ▸ Owner ID: {owner_id}\n"
+               f"> ▸ Icon: {icon}")
     await ctx.send(message)
 
 @quiet.command()
