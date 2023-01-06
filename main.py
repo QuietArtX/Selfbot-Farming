@@ -38,7 +38,7 @@ print(f'''
 
 {Fore.GREEN}The program has successfully logged into the your account
 
-{Fore.BLUE}Prefix: {prefix}
+{Fore.BLUE}Prefix: !!
 
 Project Dev: QuietArtx
 ''')
