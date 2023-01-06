@@ -215,7 +215,7 @@ async def watch(ctx, *, message):
    await quiet.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=message))
    await ctx.send("> Status Activity Has Been Change To **Watching!!**")
    
-@quiet.command(name=rstatus)
+@quiet.command()
 async def rstatus(ctx):
     await ctx.message.delete()
     await quiet.change_presence(activity=None)
