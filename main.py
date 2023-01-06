@@ -510,13 +510,14 @@ async def uptime(ctx):
     
 @quiet.command()  
 async def weather(ctx, location):
+    await ctx.message.delete()
     response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={location}&appid=28bf153817808a7c28697f2b4bbbff39')
     weather_data = response.json()
     temperature = weather_data['main']['temp']
     humidity = weather_data['main']['humidity']
     wind_speed = weather_data['wind']['speed']
     # Send a message to the channel with the weather information
-    await ctx.send(f'The weather in {location} is currently {temperature}°F, with {humidity}% humidity and {wind_speed} mph winds.')
+    await ctx.send(f'> **The weather in {location} is currently {temperature}°F, with {humidity}% humidity and {wind_speed} mph winds.**')
 #===========================================
 #-------------------END----------------------
 #============================================
