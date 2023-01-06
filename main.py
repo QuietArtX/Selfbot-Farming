@@ -66,7 +66,7 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=No
 @quiet.command(name='help')
 async def help(ctx):
     await ctx.message.delete()
-    await ctx.send(f"``` 𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ {ctx.prefix} ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting ```", delete_after=15)
+    await ctx.send(f"```\n𝗛𝗘𝗟𝗣 𝗖𝗢𝗠𝗠𝗔𝗡𝗗\n\nPrefix : ▸ {ctx.prefix} ( you can change your prefix by cmd )\n\n𝗔𝗗𝗠𝗜𝗡\nkick, ban, gban, purge\n\n𝗦𝗘𝗧𝗧𝗜𝗡𝗚𝗦\nprefix, status\n\n𝗙𝗨𝗡\npagi, siang, malam, salam, hack\n\n𝗨𝗧𝗜𝗟𝗟𝗦\nvoice, farming, gleave, ping, nick\n\nType !!cmd(usage) For More Information\n\nExample !!cmdadmin !!cmdsetting\n```", delete_after=15)
 #--------------------------------------------
 #--------------------------------------------
 
@@ -448,7 +448,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
     if mutual_servers:
         message += f'> ▸ Mutual Server:\n'
         for server in mutual_servers:
-            message += f'``` ▸ {server}\n ```'
+            message += f'```\n▸{server}\n```'
     message += f"> ▸ Joined At **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
     message += f"> ▸ Avatar: ||{member.avatar_url}||"
