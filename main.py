@@ -44,7 +44,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-quiet.run('OTg5NDMwNzM1NTYxNzE1NzEy.GX3qKW.mVHl-rKTDv9iI6YX6xsvhsTVNf0gitnUS_LbY8')
+quiet.run(os.getenv("TOKEN"), bot=False)
 #============================================
 #----------------DATABASE--------------------
 #============================================
