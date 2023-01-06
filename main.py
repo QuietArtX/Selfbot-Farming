@@ -471,7 +471,7 @@ async def userinfo(ctx, *, member: discord.Member = None):
             message += f'```▸ {server}```\n'
     message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
-    message += f"> ▸ Avatar: {member.avatar_url}"
+    message += f"> ▸ Avatar: ||{member.avatar_url}||"
     await ctx.send(message)
     
 @quiet.command()
@@ -488,7 +488,7 @@ async def serverinfo(ctx):
     member_count = len(server.members)
     owner = server.owner
     owner_id = server.owner_id
-    icon = server.icon
+    icon_url = server.icon_url
     
 
     user_name = member.name
@@ -501,7 +501,7 @@ async def serverinfo(ctx):
                f"> ▸ Member count: {member_count}\n"
                f"> ▸ Owner: {owner}\n"
                f"> ▸ Owner ID: {owner_id}\n"
-               f"> ▸ Icon: {icon}")
+               f"> ▸ Icon: ||{icon_url}||")
     await ctx.send(message)
 
 @quiet.command()
