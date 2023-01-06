@@ -461,7 +461,7 @@ async def userinfo(ctx, member: discord.Member):
     message = f"**〝 USER INFO 〞**- {member.name}==\n"
     message += f"> ID: **{member.id}**\n"
     message += f"> Status: **{member.status}**\n"
-    message += f"> Mutual Server: **{mutual.guilds}**\n"
+    message += f"> Mutual Server: **{member.mutual_guilds}**\n"
     message += f"> Highest Role: **{member.top_role}**\n"
     message += f"> Joined At: **{member.joined_at}**\n"
     message += f"> Created At: **{member.created_at}**\n"
