@@ -462,7 +462,7 @@ async def userinfo(ctx, member: discord.Member):
     message += f"> ▸ Name: **{member.name}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
-    message += f"> ▸ Server: **{member.mutual_guilds}**\n"
+    message += f"> ▸ Mutual Server: **{member.mutual_guilds}**\n"
     message += f"> ▸ Highest Role: **{member.top_role}**\n"
     message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
@@ -522,6 +522,26 @@ async def weather(ctx, *, location: str):
         await ctx.send(message)
     else:
         await ctx.send('Location not found')
+
+@quiet.command()
+async def ui(ctx, *, member: discord.Member = None):
+    if not member:
+        member = ctx.author
+    mutual_servers = []
+    for server in client.guilds:
+        if server.get_member(member.id):
+            mutual_servers.append(server.name)
+    message = f'Username: {member.name}\n'
+    message += f'Discriminator: {member.discriminator}\n'
+    message += f'ID: {member.id}\n'
+    message += f'Status: {member.status}\n'
+    message += f'Top Role: {member.top_role}\n'
+    message += f'Joined at: {member.joined_at}\n'
+    if mutual_servers:
+        message += f'\n{member.name} is also a member of the following servers:\n'
+        for server in mutual_servers:
+            message += f'- {server}\n'
+    await ctx.send(message)
 #===========================================
 #-------------------END----------------------
 #============================================
