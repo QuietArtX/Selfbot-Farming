@@ -29,8 +29,7 @@ from Quiet import uptime
 quiet = discord.Client()
 
 # Import and load each command file
-for file in Quiet:
-    importlib.import_module('uptime')
+importlib.import_module('uptime')
 print(f'''
 {Fore.BLUE}
 ░█████╗░██╗░░░██╗████████╗░█████╗░
