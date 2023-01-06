@@ -1,5 +1,5 @@
 import discord
-from discord.ext import commands
+import discord.ext.commands
 from discord.utils import get
 import colorama
 from colorama import Fore
@@ -23,9 +23,9 @@ def get_prefix(bot,message):
 
 start_time = time.time()
 
-bot = commands.Bot(command_prefix = !!, self_bot=True)
+quiet = commands.Bot(command_prefix = !!, self_bot=True)
 
-@bot.command()
+@quiet.command()
 async def uptime(ctx):
     await ctx.message.delete()
     current_time = time.time()
