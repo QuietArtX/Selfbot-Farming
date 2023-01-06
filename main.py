@@ -27,14 +27,6 @@ command_files = [file for file in os.listdir('commands') if file.endswith('.py')
 for file in command_files:
     importlib.import_module(f'commands.{file[:-3]}')
 
-{Fore.BLUE}
-░█████╗░██╗░░░██╗████████╗░█████╗░
-██╔══██╗██║░░░██║╚══██╔══╝██╔══██╗
-███████║██║░░░██║░░░██║░░░██║░░██║
-██╔══██║██║░░░██║░░░██║░░░██║░░██║
-██║░░██║╚██████╔╝░░░██║░░░╚█████╔╝
-╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░
-
 {Fore.GREEN}The program has successfully logged into the your account
 
 {Fore.BLUE}Prefix: !!
