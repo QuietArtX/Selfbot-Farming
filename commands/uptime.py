@@ -1,3 +1,6 @@
+import discord
+from discord.ext import commands
+
 @quiet.command()
 async def uptime(ctx):
     await ctx.message.delete()
