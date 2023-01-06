@@ -458,7 +458,6 @@ async def urpurge(ctx, amount:int=None):
 @quiet.command()
 async def memberinfo(ctx, *, member: discord.Member = None):
         member = ctx.author
-    mutual_servers = []
     for server in quiet.guilds:
         if server.get_member(member.id):
             mutual_servers.append(server.name)
