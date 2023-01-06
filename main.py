@@ -24,6 +24,7 @@ import re
 import typing
 import time
 import importlib
+from Quiet import uptime
 
 quiet = discord.Client()
 
