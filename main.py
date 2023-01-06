@@ -98,12 +98,12 @@ async def cmduttils(ctx):
 #============================================
 @quiet.command()
 async def userinfo(ctx, member: discord.Member):
-    embed = discord.Embed(title=f"User Info - {member.name}", color=member.color)
-    embed.add_field(name="ID", value=member.id)
-    embed.add_field(name="Status", value=member.status)
-    embed.add_field(name="Highest Role", value=member.top_role)
-    embed.add_field(name="Joined At", value=member.joined_at)
-    await ctx.send(embed=embed)
+    message = f"User Info - {member.name}\n"
+    message += f"ID: {member.id}\n"
+    message += f"Status: {member.status}\n"
+    message += f"Highest Role: {member.top_role}\n"
+    message += f"Joined At: {member.joined_at}"
+    await ctx.send(message)
 
 @quiet.command()
 @commands.has_permissions(manage_messages=True)
