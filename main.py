@@ -8,8 +8,6 @@
 
 #------------------MODULE--------------------
 import discord
-from discord.ext import commands
-from discord.utils import get
 import colorama
 from colorama import Fore
 import requests
