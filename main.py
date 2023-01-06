@@ -465,6 +465,7 @@ async def userinfo(ctx, member: discord.Member):
     message += f"> ▸ Name: **{member.name}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
+    mutual_servers = []
     if mutual_servers:
         message += f'> ▸ Mutual Server:\n'
         for server in mutual_servers:
