@@ -1,5 +1,19 @@
 import discord
 from discord.ext import commands
+from discord.utils import get
+import colorama
+from colorama import Fore
+import requests
+import sys
+import asyncio
+import json
+from webserver import keep_alive
+from googleapiclient.discovery import build
+from datetime import datetime, timedelta, timezone
+import os
+import re
+import typing
+import time
 
 def get_prefix(quiet,message):
     with open("prefixes.json", "r") as f:
