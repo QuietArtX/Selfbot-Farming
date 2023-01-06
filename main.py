@@ -454,21 +454,20 @@ async def urpurge(ctx, amount:int=None):
             await ctx.send(f"Error: {e}")
  
 @quiet.command()
-async def userinfo(ctx, member: discord.Member):
-    await ctx.message.delete()
-    await ctx.send("*Getting UserInfo...*", delete_after=3)
-    await asyncio.sleep(3)
+async def userinfo(ctx, *, member: discord.Member = None):
+    if not member:
+        member = ctx.author
     mutual_servers = []
-    for server in quiet.guilds:
+    for server in client.guilds:
         if server.get_member(member.id):
-            mutual_guilds.append(guild.name)
+            mutual_servers.append(server.name)
     message = f"**〝 USER INFO 〞**\n"
     message += f"> ▸ Name: **{member.name}**\n"
     message += f"> ▸ ID: **{member.id}**\n"
     message += f"> ▸ Status: **{member.status}**\n"
     if mutual_servers:
         message += f'> ▸ Mutual Server:\n'
-        for server in mutual_guilds:
+        for server in mutual_servers:
             message += f'```▸ {server}```\n'
     message += f"> ▸ Joined At: **{member.joined_at}**\n"
     message += f"> ▸ Created At: **{member.created_at}**\n"
