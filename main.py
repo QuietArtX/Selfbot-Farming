@@ -39,9 +39,6 @@ except:
 #--------------SETUP TOKEN-------------------
 #       Input your token in secret
 #--------------------------------------------
-prefix = "!!"
-username = "yourusername#1234"
-
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
         return "do not disturb"
@@ -90,7 +87,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-secret_key = quiet.run(os.getenv("TOKEN"), bot=False)
+secret_key = quiet.run(os.getenv("TOKEN"))
 #============================================
 #----------------DATABASE--------------------
 #============================================
