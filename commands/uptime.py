@@ -15,7 +15,7 @@ import re
 import typing
 import time
 
-def get_prefix(quiet,message):
+def get_prefix(bot,message):
     with open("prefixes.json", "r") as f:
       prefixes = json.load(f)
 
@@ -23,9 +23,9 @@ def get_prefix(quiet,message):
 
 start_time = time.time()
 
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True)
+bot = commands.Bot(command_prefix = !!, self_bot=True)
 
-@quiet.command()
+@bot.command()
 async def uptime(ctx):
     await ctx.message.delete()
     current_time = time.time()
