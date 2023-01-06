@@ -387,7 +387,7 @@ async def ping(ctx):
     message = await ctx.send("> Resolving...")
     end = time.perf_counter()
     duration = (end - start) * 1000
-    await message.edit(content=f"```Pong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms```")
+    await message.edit(content=f"```\nPong!: {round(quiet.latency * 1000)}ms\nTotal latency: {duration:.0f}ms\n```")
 
 @quiet.command()
 async def cnick(ctx, *, name: str=None):
@@ -498,14 +498,14 @@ async def uptime(ctx):
     uptime_minutes, uptime_seconds = divmod(uptime, 60)
     uptime_hours, uptime_minutes = divmod(uptime_minutes, 60)
     uptime_days, uptime_hours = divmod(uptime_hours, 24)
-    message = f'``` I have been running for:\n  ▸'
+    message = f'```\nI have been running for:\n  ▸'
     if uptime_days > 0:
         message += f'{uptime_days} Days, '
     if uptime_hours > 0:
         message += f'{uptime_hours} Hours, '
     if uptime_minutes > 0:
         message += f'{uptime_minutes} Minutes, '
-    message += f'{uptime_seconds} Seconds. ```'
+    message += f'{uptime_seconds} Seconds.\n```'
     await ctx.send(message)
     
 @quiet.command()  
