@@ -458,7 +458,7 @@ async def userinfo(ctx, member: discord.Member):
     await ctx.message.delete()
     await ctx.send("*Getting UserInfo...*", delete_after=3)
     await asyncio.sleep(3)
-    message += f"**〝 USER INFO 〞**- {member.name}==\n"
+    message = f"**〝 USER INFO 〞**- {member.name}==\n"
     message += f"> ID: **{member.id}**\n"
     message += f"> Status: **{member.status}**\n"
     message += f"> Mutual Server: **{mutual.guilds}**\n"
