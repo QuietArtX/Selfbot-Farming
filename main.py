@@ -97,6 +97,15 @@ async def cmduttils(ctx):
 #-------------------ADMIN--------------------
 #============================================
 @quiet.command()
+async def userinfo(ctx, member: discord.Member):
+    embed = discord.Embed(title=f"User Info - {member.name}", color=member.color)
+    embed.add_field(name="ID", value=member.id)
+    embed.add_field(name="Status", value=member.status)
+    embed.add_field(name="Highest Role", value=member.top_role)
+    embed.add_field(name="Joined At", value=member.joined_at)
+    await ctx.send(embed=embed)
+
+@quiet.command()
 @commands.has_permissions(manage_messages=True)
 async def purge(ctx, limit: int):
     await ctx.channel.purge(limit=limit)
