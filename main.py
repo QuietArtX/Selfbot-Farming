@@ -15,50 +15,18 @@ import sys
 import asyncio
 import json
 from webserver import keep_alive
-from googleapiclient.discovery import build
-from datetime import datetime, timedelta, timezone
-import os
-import re
-import typing
-import time
 import importlib
-
-try:
-    import shutil
-except:
-    os.system("pip install shutil")
-    import shutil
-
-try:
-    from colorama import init, Fore, Back, Style
-except:
-    os.system("pip install colorama")
-    from colorama import init, Fore, Back, Style
-#---------------------END--------------------
-
-#--------------SETUP TOKEN-------------------
-#       Input your token in secret
-#--------------------------------------------
-def getstatus(m):
-    if str(m.status) == "do.not.disturb":
-        return "do not disturb"
-    return m.status
-
-def get_prefix(quiet,message):
-    with open("prefixes.json", "r") as f:
-      prefixes = json.load(f)
-
-    return prefixes 
-
-start_time = time.time()
+import os
 
 quiet = discord.Client()
 
+# Get a list of all Python files in the commands folder
 command_files = [file for file in os.listdir('commands') if file.endswith('.py')]
 
+# Import and load each command file
 for file in command_files:
     importlib.import_module(f'commands.{file[:-3]}')
-print(f'''
+
 {Fore.BLUE}
 ░█████╗░██╗░░░██╗████████╗░█████╗░
 ██╔══██╗██║░░░██║╚══██╔══╝██╔══██╗
@@ -75,7 +43,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-secret_key = quiet.run(os.getenv("TOKEN"))
+quiet.run('OTg5NDMwNzM1NTYxNzE1NzEy.GARrM7.R5J-0gcPwPxkj9GL74eCp892IPjSVL-qxgOVBU')
 #============================================
 #----------------DATABASE--------------------
 #============================================
