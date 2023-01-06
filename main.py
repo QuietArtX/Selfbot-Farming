@@ -54,6 +54,8 @@ def get_prefix(quiet,message):
 
     return prefixes 
 
+start_time = time.time()
+
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_commandn=None, shorten=None)
 #--------------------------------------------
 #--------------------------------------------
@@ -505,28 +507,22 @@ async def serverinfo(ctx):
     await ctx.send(message)
 
 @quiet.command()
-async def weather(ctx, *, location: str):
-    api_key = 'YOUR_API_KEY'
-    base_url = 'http://api.openweathermap.org/data/2.5/weather?'
-    complete_url = base_url + 'q=' + location + '&appid=' + api_key
-    response = requests.get(complete_url)
-    data = response.json()
-    if data['cod'] != '404':
-        weather = data['weather'][0]['main']
-        temp = data['main']['temp']
-        temp_min = data['main']['temp_min']
-        temp_max = data['main']['temp_max']
-        humidity = data['main']['humidity']
-        wind_speed = data['wind']['speed']
-        message = f'Weather in {location}:\n'
-        message += f'Condition: {weather}\n'
-        message += f'Temperature: {temp}°F\n'
-        message += f'Low/High: {temp_min}°F/{temp_max}°F\n'
-        message += f'Humidity: {humidity}%\n'
-        message += f'Wind Speed: {wind_speed} mph'
-        await ctx.send(message)
-    else:
-        await ctx.send('Location not found')
+async def uptime(ctx):
+    await ctx.message.delete()
+    current_time = time.time()
+    uptime = int(current_time - start_time)
+    uptime_minutes, uptime_seconds = divmod(uptime, 60)
+    uptime_hours, uptime_minutes = divmod(uptime_minutes, 60)
+    uptime_days, uptime_hours = divmod(uptime_hours, 24)
+    message = f'I have been running for '
+    if uptime_days > 0:
+        message += f'{uptime_days} days, '
+    if uptime_hours > 0:
+        message += f'{uptime_hours} hours, '
+    if uptime_minutes > 0:
+        message += f'{uptime_minutes} minutes, '
+    message += f'and {uptime_seconds} seconds.'
+    await ctx.send(message)
 #===========================================
 #-------------------END----------------------
 #============================================
