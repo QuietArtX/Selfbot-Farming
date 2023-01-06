@@ -55,6 +55,8 @@ def get_prefix(quiet,message):
 
 start_time = time.time()
 
+quiet = discord.Client()
+
 command_files = [file for file in os.listdir('commands') if file.endswith('.py')]
 
 for file in command_files:
