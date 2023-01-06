@@ -44,7 +44,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-quiet.run('OTg5NDMwNzM1NTYxNzE1NzEy.GARrM7.R5J-0gcPwPxkj9GL74eCp892IPjSVL-qxgOVBU')
+quiet.run('OTg5NDMwNzM1NTYxNzE1NzEy.GX3qKW.mVHl-rKTDv9iI6YX6xsvhsTVNf0gitnUS_LbY8')
 #============================================
 #----------------DATABASE--------------------
 #============================================
