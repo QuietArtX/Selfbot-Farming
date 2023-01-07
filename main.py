@@ -232,7 +232,7 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-quiet.command()
+@quiet.command()
 async def anim(ctx):
     await ctx.message.delete()
     message = await ctx.send("Oyy...")
