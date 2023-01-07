@@ -229,6 +229,18 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
+async def flipcoin(ctx):
+    # Flip a coin and get the result
+    result = 'heads' if random.randint(0, 1) == 0 else 'tails'
+    # Send the appropriate coin flip image to the current channel
+    if result == 'heads':
+        await ctx.send(file=discord.File('heads.png'))
+    else:
+        await ctx.send(file=discord.File('tails.png'))
+
+client.run('YOUR_BOT_TOKEN')
+
+@quiet.command()
 async def cat(ctx):
      await ctx.message.delete()
      r = requests.get('http://aws.random.cat/meow')
