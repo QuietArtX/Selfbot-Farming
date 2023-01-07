@@ -556,7 +556,7 @@ async def embedd(ctx):
     # Add a field to the embed
     embed.add_field(name='Field 1', value='Value 1', inline=False)
     # Send the embed to the current channel
-    await client.send(embed=embed)
+    await ctx.send(embed=embed)
 
 #===========================================
 #-------------------END----------------------
