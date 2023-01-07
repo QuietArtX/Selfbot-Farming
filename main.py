@@ -251,9 +251,9 @@ async def anim(ctx):
 @quiet.command()
 async def bulan(ctx):
     await ctx.message.delete()
-    message = await ctx.send("bulan...")
-    animation_interval = 0.6
-    animation_ttl = range(20)
+    message = await ctx.send("**Moon...**")
+    animation_interval = 0.5
+    animation_ttl = range(16)
     animation_chars = [
         "🌗",
         "🌘",
