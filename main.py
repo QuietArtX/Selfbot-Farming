@@ -235,7 +235,7 @@ async def rstatus(ctx):
 @quiet.command()
 async def animate(ctx, *, message: str):
     # Split the message into a list of messages
-    messages = "HEI", "KAMU", "AKU", "SAYANG"
+    messages = ("HEI", "KAMU", "AKU", "SAYANG")
 
     # Send an initial message
     msg = await ctx.send(messages[0])
