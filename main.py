@@ -236,15 +236,23 @@ quiet.command()
 async def anim(ctx):
     await ctx.message.delete()
     message = await ctx.send("Oyy...")
-    await ctx.message.edit("KIYOOMASAA")
-    await asyncio.sleep(1)
-    await ctx.message.edit("NANDE NANDE")
+    animation_interval = 1
+    animation_ttl = range(30)
+    animation_chars = [
+       "KYIOOMASAAA",
+       "NANDE NANDE",
+       "BAKAAA",
+       "BUSET DAH",
+    ]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await message.edit(content=animation_chars[i % 4])
 
 @quiet.command()
 async def bulan(ctx):
     await ctx.message.delete()
     message = await ctx.send("bulan...")
-    animation_interval = 0.2
+    animation_interval = 1
     animation_ttl = range(96)
     animation_chars = [
         "🌗",
