@@ -233,19 +233,37 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
-async def animate(ctx):
-    # Send an initial message with a single space character
-    msg = await ctx.send('suire')
+async def animate(ctx, *, message: str):
+    # Split the message into a list of messages
+    messages = message.split(',')
 
-    # Split the message into a list of characters
-    chars = list("SERBA SALAH", "AKU")
+    # Send an initial message
+    msg = await ctx.send(messages[0])
 
-    # Animate the message by updating the message with one character at a time
-    for char in chars:
-        # Edit the message to add the next character
-        await msg.edit(content=char)
-        # Delay for 0.5 seconds before updating the message again
-        await asyncio.sleep(0.7)
+    # Add a reaction to the message to allow the user to stop the loop
+    await msg.add_reaction('⏹')
+
+    # Create an infinite loop
+    while True:
+        # Check if the user has reacted to the message with the stop emoji
+        def check(reaction, user):
+            return user == ctx.author and str(reaction.emoji) == '⏹'
+
+        # Wait for the user to react to the message
+        try:
+            reaction, user = await quiet.wait_for('reaction_add', check=check, timeout=60.0)
+        except asyncio.TimeoutError:
+            # If the user does not react within 60 seconds, break the loop
+            break
+
+        # If the user reacts with the stop emoji, break the loop
+        if str(reaction.emoji) == '⏹':
+            break
+
+        # Edit the message to the next message in the list
+        await msg.edit(content=messages[(messages.index(msg.content)+1) % len(messages)])
+        # Delay for 1 second before updating the message again
+        await asyncio.sleep(1)
 
 @quiet.command()
 async def flipcoin(ctx):
