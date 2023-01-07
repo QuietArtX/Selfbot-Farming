@@ -233,7 +233,7 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
-async def animate(ctx, *, message: str):
+async def animate(ctx):
     # Split the message into a list of messages
     messages = ("HEI", "KAMU", "AKU", "SAYANG")
 
