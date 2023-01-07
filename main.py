@@ -229,6 +229,12 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
+async def cat(client, message):
+     r = requests.get('http://aws.random.cat/meow')
+     cat_image_url = r.json()['file']
+     await client.send_message(message.channel, cat_image_url)
+
+@quiet.command()
 async def ml(ctx):
       await ctx.send("**My ID Mobile Legends**\n> Nickname : Mystic Excaliburnn.\n> ID : 498484453 (8010)")
 
