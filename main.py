@@ -375,7 +375,7 @@ async def leave(ctx):
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
 @quiet.command()
-async def fdeafen(ctx)
+async def fdeafen(ctx):
       await ctx.message.delete()
       voice_state = message.author.voice
       await message.author.edit(deaf=True)
