@@ -563,7 +563,7 @@ async def embedd(ctx):
 
 @quiet.command()
 async def foto(ctx):
-     await ctx.send(foto.png)
+     await ctx.send(foto)
 #===========================================
 #-------------------END----------------------
 #============================================
