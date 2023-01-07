@@ -282,7 +282,7 @@ async def bulan(ctx):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await ctx.message.edit(animation_chars[i % 32])
+        await message.edit(content=animation_chars[i % 32])
 
 @quiet.command()
 async def flipcoin(ctx):
