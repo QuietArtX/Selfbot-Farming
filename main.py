@@ -235,9 +235,9 @@ async def flipcoin(ctx):
     result = 'heads' if random.randint(0, 1) == 0 else 'tails'
     # Send the appropriate coin flip image to the current channel
     if result == 'heads':
-        await ctx.send(file=discord.File('heads.png'))
+        await ctx.send('https://cdn.discordapp.com/attachments/1061025685419851849/1061166940393054278/heads.png')
     else:
-        await ctx.send(file=discord.File('tails.png'))
+        await ctx.send('https://cdn.discordapp.com/attachments/1061025685419851849/1061166940757970997/tails.png')
 
 @quiet.command()
 async def cat(ctx):
