@@ -230,7 +230,6 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-
 @quiet.command()
 async def flipcoin(ctx):
     # Flip a coin and get the result
@@ -542,7 +541,7 @@ async def weather(ctx, location):
 @quiet.command()
 async def search(ctx, *, query):
     # Search Google using the API key and get the search results
-    service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='YOUR_API_KEY')
+    service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0')
     results = service.cse().list(q=query, cx='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0').execute()
     # Format the search results as a plain text message
     message = f'Search Results for "{query}":\n'
