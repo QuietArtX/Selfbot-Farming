@@ -374,6 +374,13 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
+@quiet.command()
+async def deafen(ctx, user: discord.Member):
+    # Check if the user is in a voice channel
+    if user.voice is not None:
+        # Change the user's voice state to "muted" and "deafened"
+        await user.edit(mute=False, deaf=True)
+
 @quiet.event
 async def on_message(message):
 
