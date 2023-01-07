@@ -234,7 +234,7 @@ async def rstatus(ctx):
 #============================================
 @quiet.command()
 async def bulan(ctx):
-    message = await ctx.message.edit(ctx, "bulan.")
+    message = await ctx.message.edit("bulan.")
     animation_interval = 0.2
     animation_ttl = range(96)
     await ctx.message.edit("bulan..")
