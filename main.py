@@ -567,7 +567,7 @@ keywords_to_replies = {
 
 @quiet.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == quiet.user:
         return
 
     for keyword, reply in keywords_to_replies.items():
