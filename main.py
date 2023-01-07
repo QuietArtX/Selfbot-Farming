@@ -58,7 +58,7 @@ def get_prefix(quiet,message):
     return prefixes 
 
 start_time = time.time()
-
+quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
 #--------------------------------------------
 #--------------------------------------------
