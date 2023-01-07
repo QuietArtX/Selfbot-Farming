@@ -230,6 +230,17 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
+async def google(ctx, *, query):
+    # Search Google and get the search results
+    results = google.search(query)
+    # Format the search results as a plain text message
+    message = f'Search Results for "{query}":\n'
+    for result in results:
+        message += f'{result.name} ({result.link})\n'
+    # Send the message to the current channel
+    await ctx.send(message)
+
+@quiet.command()
 async def flipcoin(ctx):
     # Flip a coin and get the result
     result = 'heads' if random.randint(0, 1) == 0 else 'tails'
