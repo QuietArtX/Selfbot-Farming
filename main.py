@@ -162,6 +162,12 @@ async def gban(ctx, x: int):
 #------------------SETTINGS------------------
 #============================================
 @quiet.command()
+async def changeavatar(ctx, avatar_url: str):
+    await ctx.message.detele()
+    await quiet.edit_profile(avatar=avatar_url)
+    await ctx.send('Avatar changed')
+
+@quiet.command()
 async def cprefix(ctx, *, prefix):
     await ctx.message.delete()
 
@@ -373,13 +379,6 @@ async def leave(ctx):
         json.dump({"guild":None,"channel":None}, f)
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
-
-@quiet.command()
-async def deafen(ctx, user: discord.Member):
-    # Check if the user is in a voice channel
-    if user.voice is not None:
-        # Change the user's voice state to "muted" and "deafened"
-        await user.edit(mute=False, deaf=True)
 
 @quiet.event
 async def on_message(message):
