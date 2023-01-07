@@ -233,30 +233,48 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
-async def animate(ctx):
-    # Split the message into a list of messages
-    messages = ("HEI", "KAMU", "AKU", "SAYANG")
-
-    # Send an initial message
-    msg = await ctx.send(messages[0])
-
-    # Set the index to 1
-    index = 1
-
-    # Start a while loop
-    while True:
-        # Edit the message to the next message in the list
-        await msg.edit(content=messages[index])
-        # Delay for 1 second before updating the message again
-        await asyncio.sleep(1)
-        # Increment the index
-        index = (index + len(messages)) % len(messages)
-        # Break the loop if the index reaches the last message
-        if index == len(messages) - 1:
-            break
-
-    # Edit the message to the last message in the list
-    await msg.edit(content=messages[index])
+async def bulan(ctx):
+    msg = await ctx.edit(ctx, "bulan.")
+    animation_interval = 0.2
+    animation_ttl = range(96)
+    await ctx.edit("bulan..")
+    animation_chars = [
+        "🌗",
+        "🌘",
+        "🌑",
+        "🌒",
+        "🌓",
+        "🌔",
+        "🌕",
+        "🌖",
+        "🌗",
+        "🌘",
+        "🌑",
+        "🌒",
+        "🌓",
+        "🌔",
+        "🌕",
+        "🌖",
+        "🌗",
+        "🌘",
+        "🌑",
+        "🌒",
+        "🌓",
+        "🌔",
+        "🌕",
+        "🌖",
+        "🌗",
+        "🌘",
+        "🌑",
+        "🌒",
+        "🌓",
+        "🌔",
+        "🌕",
+        "🌖",
+    ]
+    for i in animation_ttl:
+        await asyncio.sleep(animation_interval)
+        await event.edit(animation_chars[i % 32])
 
 @quiet.command()
 async def flipcoin(ctx):
