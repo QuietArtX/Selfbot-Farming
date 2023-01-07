@@ -238,7 +238,7 @@ async def animate_recursive(msg, messages, index):
     # Delay for 1 second before updating the message again
     await asyncio.sleep(1)
     # Increment the index
-    index = (index + 1) % len(messages)
+    index = (index + len(messages)) % len(messages)
     # Check if the message is "stop"
     if messages[index] == "stop":
         return
@@ -251,7 +251,7 @@ async def animate(ctx, *, message: str):
     messages = message.split(',')
 
     # Send an initial message
-    msg = await ctx.send(messages[0])
+    msg = await ctx.send(messages[1])
 
     # Start the recursion function with an index of 1
     await animate_recursive(msg, messages, 1)
