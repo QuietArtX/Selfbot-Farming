@@ -232,6 +232,7 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+@quiet.command()
 async def animate(ctx, *, message: str):
     # Send an initial message with a single space character
     msg = await ctx.send('suire')
