@@ -162,15 +162,6 @@ async def gban(ctx, x: int):
 #------------------SETTINGS------------------
 #============================================
 @quiet.command()
-async def changeavatar(ctx, *, message=url):
-    await ctx.message.delete()
-    if avatar.startswith(('http://', 'https://')):
-         await quiet.user.edit(avatar=message)
-         await ctx.send('*Avatar changed*')
-    else:
-         await ctx.send('Invalid avatar URL')
-
-@quiet.command()
 async def cprefix(ctx, *, prefix):
     await ctx.message.delete()
 
@@ -241,6 +232,26 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+@quiet.command()
+async def animate(ctx, *, message: str):
+    # Split the message into a list of characters
+    chars = list(message)
+
+    # Animate the message by sending one character at a time
+    for char in chars:
+        await ctx.send(char)
+        # Delay for 0.5 seconds before sending the next character
+        await asyncio.sleep(0.5)
+
+client.run('YOUR_SELFBOT_TOKEN')
+To use this command, you can type !animate followed by the message that you want to animate, like this:
+
+Copy code
+!animate Hello, world!
+This command will send the message "Hello, world!" one character at a time, with a delay of 0.5 seconds between each character. You can adjust the delay by changing the value of the sleep function.
+
+I hope this helps! Let me know if you have any further questions.
+
 @quiet.command()
 async def flipcoin(ctx):
     # Flip a coin and get the result
