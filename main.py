@@ -243,15 +243,6 @@ async def animate(ctx, *, message: str):
         # Delay for 0.5 seconds before sending the next character
         await asyncio.sleep(0.5)
 
-client.run('YOUR_SELFBOT_TOKEN')
-To use this command, you can type !animate followed by the message that you want to animate, like this:
-
-Copy code
-!animate Hello, world!
-This command will send the message "Hello, world!" one character at a time, with a delay of 0.5 seconds between each character. You can adjust the delay by changing the value of the sleep function.
-
-I hope this helps! Let me know if you have any further questions.
-
 @quiet.command()
 async def flipcoin(ctx):
     # Flip a coin and get the result
