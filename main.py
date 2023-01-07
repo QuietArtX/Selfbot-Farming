@@ -384,7 +384,7 @@ async def on_message(message):
              if voice_state is not None and voice_state.deaf:
                  await message.channel.send('I am already deafened!')
              else:
-                 await message.author.edit(deaf=True)
+                 await message.author.edit(self_deaf=True)
                  await message.channel.send('I am now deafened!')
      except:
         pass
