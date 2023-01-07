@@ -162,10 +162,10 @@ async def gban(ctx, x: int):
 #------------------SETTINGS------------------
 #============================================
 @quiet.command()
-async def changeavatar(ctx, avatar: str, *, url):
+async def changeavatar(ctx, avatar: str, *, message):
     await ctx.message.delete()
     if avatar.startswith(('http://', 'https://')):
-         await quiet.user.edit(avatar=url)
+         await quiet.user.edit(avatar=message)
          await ctx.send('*Avatar changed*')
     else:
          await ctx.send('Invalid avatar URL')
