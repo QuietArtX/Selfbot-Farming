@@ -560,6 +560,20 @@ async def embedd(ctx):
     # Send the embed to the current channel
     await quiet.send(embed=embed)
 
+keywords_to_replies = {
+    "hello": "Hello there!",
+    "goodbye": "Goodbye!"
+}
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    for keyword, reply in keywords_to_replies.items():
+        if keyword in message.content:
+            await message.channel.send(reply)
+
 #===========================================
 #-------------------END----------------------
 #============================================
