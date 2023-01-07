@@ -230,6 +230,7 @@ async def rstatus(ctx):
 #============================================
 @quiet.command()
 async def cat(ctx):
+     await ctx.message.delete()
      r = requests.get('http://aws.random.cat/meow')
      cat_image_url = r.json()['file']
      await ctx.send(cat_image_url)
