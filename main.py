@@ -13,6 +13,7 @@ from discord.utils import get
 import colorama
 from colorama import Fore
 import requests
+import google
 import sys
 import asyncio
 import json
