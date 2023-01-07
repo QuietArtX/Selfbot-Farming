@@ -232,6 +232,14 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+quiet.command()
+async def anim(ctx):
+    await ctx.message.delete()
+    message = await ctx.send("Oyy...")
+    await ctx.message.edit("KIYOOMASAA")
+    await asyncio.sleep(1)
+    await ctx.message.edit("NANDE NANDE")
+
 @quiet.command()
 async def bulan(ctx):
     await ctx.message.delete()
