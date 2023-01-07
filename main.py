@@ -26,6 +26,7 @@ import re
 import typing
 import random
 import time
+import quiet
 
 try:
     import shutil
@@ -560,20 +561,9 @@ async def embedd(ctx):
     # Send the embed to the current channel
     await quiet.send(embed=embed)
 
-keywords_to_replies = {
-    "hello": "Hello there!",
-    "goodbye": "Goodbye!"
-}
-
-@quiet.event
-async def on_message(message):
-    if message.author == quiet.user:
-        return
-
-    for keyword, reply in keywords_to_replies.items():
-        if keyword in message.content:
-            await message.channel.send(reply)
-
+@quiet.command()
+async def foto(ctx):
+     ctx send('foto.png')
 #===========================================
 #-------------------END----------------------
 #============================================
