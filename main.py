@@ -374,12 +374,22 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-@quiet.command()
-async def fdeafen(ctx):
-      await ctx.message.delete()
-      voice_state = author.voice
-      await ctx.author.edit(deaf=True)
-      await ctx.send("DONE")
+@quiet.event
+async def on_message(message):
+
+     try:
+
+        if message.content == '!deafen':
+             voice_state = message.author.voice
+             if voice_state is not None and voice_state.deaf:
+                 await message.channel.send('I am already deafened!')
+             else:
+                 await message.author.edit(deaf=True)
+                 await message.channel.send('I am now deafened!')
+     except:
+        pass
+
+     await quiet.process_commands(message)
 
 @quiet.command()  
 async def unb(ctx, message, *, amount: typing.Optional[int] = 0):
