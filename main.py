@@ -17,6 +17,7 @@ import google
 import sys
 import asyncio
 import json
+import googleapiclient
 from webserver import keep_alive
 from googleapiclient.discovery import build
 from datetime import datetime, timedelta, timezone
@@ -542,7 +543,7 @@ async def weather(ctx, location):
 async def search(ctx, *, query):
     # Search Google using the API key and get the search results
     service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0')
-    results = service.cse().list(q=query, cx='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0').execute()
+    results = service.cse().list(q=query, cx='9678f11e344024890').execute()
     # Format the search results as a plain text message
     message = f'Search Results for "{query}":\n'
     for result in results['items']:
