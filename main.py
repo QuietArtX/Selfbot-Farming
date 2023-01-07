@@ -16,6 +16,7 @@ import requests
 import google
 import sys
 import asyncio
+import googleapiclient.discovery.build
 import json
 from webserver import keep_alive
 from googleapiclient.discovery import build
@@ -230,16 +231,6 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-@quiet.command()
-async def google(ctx, *, query):
-    # Search Google and get the search results
-    results = google.search(query)
-    # Format the search results as a plain text message
-    message = f'Search Results for "{query}":\n'
-    for result in results:
-        message += f'{result.name} ({result.link})\n'
-    # Send the message to the current channel
-    await ctx.send(message)
 
 @quiet.command()
 async def flipcoin(ctx):
@@ -548,6 +539,18 @@ async def weather(ctx, location):
     wind_speed = weather_data['wind']['speed']
     # Send a message to the channel with the weather information
     await ctx.send(f'> **The weather in {location} is currently {temperature}°F, with {humidity}% humidity and {wind_speed} mph winds.**')
+
+@quiet.command()
+async def search(ctx, *, query):
+    # Search Google using the API key and get the search results
+    service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='YOUR_API_KEY')
+    results = service.cse().list(q=query, cx='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0').execute()
+    # Format the search results as a plain text message
+    message = f'Search Results for "{query}":\n'
+    for result in results['items']:
+        message += f'{result["title"]} ({result["link"]})\n'
+    # Send the message to the current channel
+    await ctx.send(message)
 #===========================================
 #-------------------END----------------------
 #============================================
