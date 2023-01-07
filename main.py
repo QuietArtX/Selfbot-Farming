@@ -163,9 +163,9 @@ async def gban(ctx, x: int):
 #============================================
 @quiet.command()
 async def changeavatar(ctx, avatar_url: str):
-    await ctx.message.detele()
+    await ctx.message.delete()
     await quiet.edit_profile(avatar=avatar_url)
-    await ctx.send('Avatar changed')
+    await ctx.send('*Avatar changed*')
 
 @quiet.command()
 async def cprefix(ctx, *, prefix):
