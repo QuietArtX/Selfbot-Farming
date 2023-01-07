@@ -551,12 +551,14 @@ async def search(ctx, *, query):
     await ctx.send(message)
 
 @quiet.command()
-async def embedd(ctx):
+async def embedd(ctx, quiet):
+    await ctx.message.delete()
+    await ctx.send('embed embed')
     embed = discord.Embed(title='My Embed', description='This is an embed')
     # Add a field to the embed
     embed.add_field(name='Field 1', value='Value 1', inline=False)
     # Send the embed to the current channel
-    await ctx.send(embed=embed)
+    await quiet.send(embed=embed)
 
 #===========================================
 #-------------------END----------------------
