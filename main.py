@@ -240,19 +240,20 @@ async def animate(ctx, *, message: str):
     # Send an initial message
     msg = await ctx.send(messages[0])
 
-    # Set the index to 1 and the counter to 1
+    # Set the index to 1
     index = 1
-    counter = 1
 
-    # Start a loop that will run until the counter reaches the length of the list
-    while counter < len(messages):
+    # Start a while loop
+    while True:
         # Edit the message to the next message in the list
         await msg.edit(content=messages[index])
         # Delay for 1 second before updating the message again
         await asyncio.sleep(1)
-        # Increment the index and the counter
+        # Increment the index
         index = (index + len(messages)) % len(messages)
-        counter += 1
+        # Break the loop if the index reaches the last message
+        if index == len(messages) - 1:
+            break
 
     # Edit the message to the last message in the list
     await msg.edit(content=messages[index])
