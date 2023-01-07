@@ -551,7 +551,7 @@ async def search(ctx, *, query):
     await ctx.send(message)
 
 @quiet.command()
-async def embedd(ctx, quiet):
+async def embedd(ctx):
     await ctx.message.delete()
     await ctx.send('embed embed')
     embed = discord.Embed(title='My Embed', description='This is an embed')
