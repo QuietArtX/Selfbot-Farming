@@ -232,15 +232,18 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-@quiet.command()
 async def animate(ctx, *, message: str):
+    # Send an initial message with a single space character
+    msg = await ctx.send('suire')
+
     # Split the message into a list of characters
     chars = list(message)
 
-    # Animate the message by sending one character at a time
+    # Animate the message by updating the message with one character at a time
     for char in chars:
-        await ctx.send(char)
-        # Delay for 0.5 seconds before sending the next character
+        # Edit the message to add the next character
+        await msg.edit(content=char)
+        # Delay for 0.5 seconds before updating the message again
         await asyncio.sleep(0.5)
 
 @quiet.command()
