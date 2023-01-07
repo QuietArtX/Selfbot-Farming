@@ -237,7 +237,7 @@ async def anim(ctx):
     await ctx.message.delete()
     message = await ctx.send("Oyy...")
     animation_interval = 1
-    animation_ttl = range(30)
+    animation_ttl = range(2)
     animation_chars = [
        "KYIOOMASAAA",
        "NANDE NANDE",
