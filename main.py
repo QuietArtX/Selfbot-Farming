@@ -541,13 +541,12 @@ async def weather(ctx, location):
 
 @quiet.command()
 async def search(ctx, *, query):
-    # Search Google using the API key and get the search results
+    await ctx.message.delete()
     service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0')
     results = service.cse().list(q=query, cx='9678f11e344024890').execute()
-    # Format the search results as a plain text message
-    message = f'Search Results for "{query}":\n'
+    message = f'> 〝 SERVER INFO 〞 **"{query}"**:\n\n'
     for result in results['items']:
-        message += f'{result["title"]} ({result["link"]})\n'
+        message += f' **〝 {result["title"]} 〞**\n> {result["link"]}\n\n'
     # Send the message to the current channel
     await ctx.send(message)
 #===========================================
