@@ -238,8 +238,6 @@ async def flipcoin(ctx):
     else:
         await ctx.send(file=discord.File('tails.png'))
 
-client.run('YOUR_BOT_TOKEN')
-
 @quiet.command()
 async def cat(ctx):
      await ctx.message.delete()
