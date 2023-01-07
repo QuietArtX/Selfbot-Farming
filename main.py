@@ -565,7 +565,7 @@ keywords_to_replies = {
     "goodbye": "Goodbye!"
 }
 
-@client.event
+@quiet.event
 async def on_message(message):
     if message.author == client.user:
         return
