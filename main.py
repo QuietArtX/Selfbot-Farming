@@ -232,30 +232,30 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-async def animate_recursive(msg, messages, index):
-    # Edit the message to the next message in the list
-    await msg.edit(content=messages[index])
-    # Delay for 1 second before updating the message again
-    await asyncio.sleep(1)
-    # Increment the index
-    index = (index + len(messages)) % len(messages)
-    # Check if the message is "stop"
-    if messages[index] == "stop":
-        return
-    # Recursively call the function with the updated index
-    await animate_recursive(msg, messages, index)
-
 @quiet.command()
 async def animate(ctx, *, message: str):
     # Split the message into a list of messages
     messages = message.split(',')
 
     # Send an initial message
-    msg = await ctx.send(messages[1])
+    msg = await ctx.send(messages[0])
 
-    # Start the recursion function with an index of 1
-    await animate_recursive(msg, messages, 1)
+    # Set the index to 1 and the counter to 1
+    index = 1
+    counter = 1
 
+    # Start a loop that will run until the counter reaches the length of the list
+    while counter < len(messages):
+        # Edit the message to the next message in the list
+        await msg.edit(content=messages[index])
+        # Delay for 1 second before updating the message again
+        await asyncio.sleep(1)
+        # Increment the index and the counter
+        index = (index + len(messages)) % len(messages)
+        counter += 1
+
+    # Edit the message to the last message in the list
+    await msg.edit(content=messages[index])
 
 @quiet.command()
 async def flipcoin(ctx):
