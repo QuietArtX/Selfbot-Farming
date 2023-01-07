@@ -229,10 +229,10 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
-async def cat(client, message):
+async def cat(ctx):
      r = requests.get('http://aws.random.cat/meow')
      cat_image_url = r.json()['file']
-     await client.send_message(message.channel, cat_image_url)
+     await ctx.send(cat_image_url)
 
 @quiet.command()
 async def ml(ctx):
