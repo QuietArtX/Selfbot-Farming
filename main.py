@@ -378,7 +378,7 @@ async def leave(ctx):
 async def fdeafen(ctx, message):
       await ctx.message.delete()
       voice_state = message.author.voice
-      await message.author.edit(deaf=True)
+      message = await message.author.edit(deaf=True)
       await ctx.send("DONE")
 
 @quiet.command()  
