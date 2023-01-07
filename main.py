@@ -101,24 +101,6 @@ async def cmduttils(ctx):
 #============================================
 #-------------------ADMIN--------------------
 #============================================
-@quiet.command()
-async def auto_reply(ctx, toggle: bool):
-    quiet.auto_reply_enabled = toggle
-    if toggle:
-        await ctx.send("Automatic replies for Direct Messages are now enabled.")
-    else:
-        await ctx.send("Automatic replies for Direct Messages are now disabled.")
-
-@quiet.event
-async def on_message(message):
-     try:
-        if quiet.auto_reply_enabled and message.channel.type == discord.ChannelType.private:
-               await message.channel.send("This is an automatic reply.")
-     except:
-        pass
-
-     await quiet.process_command(message)
-
 @quiet.command(name='purge', description='Menghapus Chat')
 @commands.has_permissions(manage_messages=True)
 async def purge(ctx, limit: int):
