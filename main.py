@@ -544,11 +544,20 @@ async def search(ctx, *, query):
     await ctx.message.delete()
     service = googleapiclient.discovery.build('customsearch', 'v1', developerKey='AIzaSyBN9SQQJg9sQxr3U8QUeMlosDmdVbBLff0')
     results = service.cse().list(q=query, cx='9678f11e344024890').execute()
-    message = f'> 〝 SERVER INFO 〞 **"{query}"**:\n\n'
+    message = f'> SEARCH RESULT FOR **〝 "{query}" 〞**:\n\n'
     for result in results['items']:
-        message += f' **〝 {result["title"]} 〞**\n> {result["link"]}\n\n'
+        message += f' **{result["title"]}**\n> {result["link"]}\n\n'
     # Send the message to the current channel
     await ctx.send(message)
+
+@quiet.command()
+async def embedd(ctx):
+    embed = discord.Embed(title='My Embed', description='This is an embed')
+    # Add a field to the embed
+    embed.add_field(name='Field 1', value='Value 1', inline=False)
+    # Send the embed to the current channel
+    await client.send(embed=embed)
+
 #===========================================
 #-------------------END----------------------
 #============================================
