@@ -63,7 +63,7 @@ def get_prefix(quiet,message):
 
 start_time = time.time()
 quiet = discord.Client()
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
+quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
 
 giveaway_entries = []
 
