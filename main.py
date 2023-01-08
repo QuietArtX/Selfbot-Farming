@@ -245,13 +245,23 @@ async def rstatus(ctx):
 #============================================
 @quiet.command()
 async def start_giveaway(ctx, message_id: int):
-    # Get the message object using the message ID
-    message = await ctx.channel.fetch_message(message_id)
+    # Get all the channels in the server
+    channels = client.get_all_channels()
     
-    # Get the reactions on the message
-    reactions = Message.reactions
-    for reaction in reactions:
-        if str(reaction.emoji) == "🎉":
+    # Find the channel where the message was sent
+    channel = None
+    for c in channels:
+        if c.id == ctx.channel.id:
+            channel = c
+            break
+    
+    # Get the message object using the message ID
+    async for message in channel.history(limit=1):
+        if message.id == message_id:
+            # Get the reactions on the message
+            reactions = message.reactions
+            for reaction in reactions:
+                if str(reaction.emoji) == "🎉":
             # Get the users who reacted to the message
             users = await reaction.users().flatten()
             # Add the users to the giveaway entries list
