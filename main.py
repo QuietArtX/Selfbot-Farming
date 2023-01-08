@@ -48,7 +48,7 @@ except:
 #--------------------------------------------
 prefix = "!!"
 username = "yourusername#1234"
-giveaway_entries = []
+
 
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
@@ -64,6 +64,8 @@ def get_prefix(quiet,message):
 start_time = time.time()
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
+
+giveaway_entries = []
 
 @quiet.command()
 async def lord(ctx):
@@ -241,6 +243,17 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+@quiet.command()
+async def giveaway(ctx, *, message):
+    # Delete the original message
+    await ctx.message.delete()
+    
+    # Create a new message with the giveaway details
+    giveaway_message = await ctx.send(message)
+    
+    # Add the react emoji to the message
+    await giveaway_message.add_reaction("🎉")
+
 @quiet.event
 async def on_raw_reaction_add(payload):
     # Check if the reaction is the 🎉 emoji
@@ -253,21 +266,14 @@ async def on_raw_reaction_add(payload):
         giveaway_entries.append(user)
 
 @quiet.command()
-async def giveaway(ctx, *, message):
-    # Delete the original message
-    await ctx.message.delete()
-    
-    # Create a new message with the giveaway details
-    giveaway_message = await ctx.send(message)
-    
-    # Add the react emoji to the message
-    await giveaway_message.add_reaction("🎉")
-
-@quiet.command()
 async def end_giveaway(ctx):
-    # Select a random user from the giveaway entries list
-    winner = random.choice(giveaway_entries)
-    await ctx.send(f"The winner of the giveaway is {winner.mention}!")
+    # Check if the giveaway entries list is empty
+    if not giveaway_entries:
+        await ctx.send("There are no entries for this giveaway.")
+    else:
+        # Select a random user from the giveaway entries list
+        winner = random.choice(giveaway_entries)
+        await ctx.send(f"The winner of the giveaway is {winner.mention}!")
 
 @quiet.event
 async def on_message(message):
