@@ -23,7 +23,6 @@ from googleapiclient.discovery import build
 from datetime import datetime, timedelta, timezone
 import os
 import re
-import pafy
 import typing
 import random
 import time
@@ -479,21 +478,21 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-import discord
-from discord.ext import commands
-
-client = commands.Bot(command_prefix='!')
-
 @quiet.command()
-async def play(ctx, url):
-    # Get the audio stream from the YouTube video
-    video = pafy.new(url)
-    best_audio = video.getbestaudio()
-    audio_url = best_audio.url
-
-    # Create a voice client and play the audio
-    voice_client = await ctx.author.voice.channel.connect()
-    voice_client.play(audio_url)
+async def play(ctx, url: str):
+    # Get the voice channel the user is in
+    channel = ctx.author.voice.channel
+    if channel is None:
+        return await ctx.send("You are not connected to a voice channel.")
+    
+    # Create a PCMVolumeTransformer object to control the volume
+    # of the audio and an AudioSource object to play the audio
+    audio_source = discord.PCMVolumeTransformer(discord.AudioSource(url))
+    audio_source.volume = 0.5  # Set the volume to 50%
+    
+    # Join the voice channel and start playing the audio
+    vc = await channel.connect()
+    vc.play(audio_source)
 
 @quiet.event
 async def on_message(message):
