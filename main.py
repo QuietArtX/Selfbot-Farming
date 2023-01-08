@@ -254,10 +254,10 @@ async def on_message(message):
            response = await client.wait_for('message', check=check_for_hello)
            await response.channel.send("Good Night Too Dear!")
 
-      except:
+     except:
          pass
        
-      await quiet.process_command(message)
+     await quiet.process_command(message)
 
 def check_for_malam(message):
     return message.content == "Malam"
