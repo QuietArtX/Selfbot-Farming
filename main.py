@@ -48,6 +48,7 @@ except:
 #--------------------------------------------
 prefix = "!!"
 username = "yourusername#1234"
+giveaway_entries = []
 
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
@@ -240,6 +241,35 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+@quiet.command()
+async def giveaway(ctx, *, message):
+    # Delete the original message
+    await ctx.message.delete()
+    
+    # Create a new message with the giveaway details
+    giveaway_message = await ctx.send(message)
+    
+    # Add the react emoji to the message
+    await giveaway_message.add_reaction("🎉")
+
+@quiet.command()
+async def end_giveaway(ctx):
+    # Get the users who reacted to the message
+    reactions = giveaway_message.reactions
+    for reaction in reactions:
+        if str(reaction.emoji) == "🎉":
+            users = await reaction.users().flatten()
+            # Add the users to the giveaway entries list
+            for user in users:
+                giveaway_entries.append(user)
+    
+    # Select a random user from the giveaway entries list
+    winner = random.choice(giveaway_entries)
+    await ctx.send(f"The winner of the giveaway is {winner.mention}!")
+
+client.run("TOKEN")
+
+
 @quiet.event
 async def on_message(message):
     if message.author == discord.User:
