@@ -246,7 +246,7 @@ async def rstatus(ctx):
 @quiet.command()
 async def start_giveaway(ctx, message_id: int):
     # Get all the channels in the server
-    channels = client.get_all_channels()
+    channels = quiet.get_all_channels()
     
     # Find the channel where the message was sent
     channel = None
