@@ -478,10 +478,33 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-@quiet.command(pass_context=True)
+@quiet.command()
 async def play(ctx, url):
-    server = ctx.message.guild.voice_client
-    server.play(discord.FFmpegPCMAudio(url))
+    # Make sure the user is in a voice channel
+    if ctx.message.author.voice is None:
+        await ctx.send("You must be in a voice channel to use this command.")
+        return
+
+    # Join the user's voice channel
+    voice_channel = ctx.message.author.voice.channel
+    vc = await voice_channel.connect()
+
+    # Use youtube_dl to get the audio data from the URL
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        audio_data = ydl.extract_info(url, download=False)
+        audio_url = audio_data['url']
+
+    # Create a StreamPlayer and start playing the audio
+    player = discord.FFmpegPCMAudio(audio_url)
+    vc.play(player)
 
 @quiet.event
 async def on_message(message):
