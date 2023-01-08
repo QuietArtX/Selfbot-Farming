@@ -267,9 +267,6 @@ async def end_giveaway(ctx):
     winner = random.choice(giveaway_entries)
     await ctx.send(f"The winner of the giveaway is {winner.mention}!")
 
-client.run("TOKEN")
-
-
 @quiet.event
 async def on_message(message):
     if message.author == discord.User:
