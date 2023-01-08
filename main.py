@@ -66,8 +66,9 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=No
 
 @quiet.command()
 async def setstr(ctx):
-    activity = discord.Streaming(name="Streaming with image", url="https://www.example.com/stream", detail="SUUUI", state="APA IYAH?")
-    activity.image = "https://cdn.discordapp.com/attachments/1061025685419851849/1061307014162161694/20230107_130234.png"
+    activity = discord.Streaming(platform=Youtube, name="Streaming with image", url="!!play https://www.youtube.com/watch?v=92izkAK5OA0&feature=youtu.be", detail="SUUUI", state="APA IYAH?")
+    activity.large_image_url = "https://cdn.discordapp.com/attachments/1061025685419851849/1061307014162161694/20230107_130234.png"
+    activity.large_image_text = "HAI"
     await quiet.change_presence(activity=activity)
 
 #--------------------------------------------
