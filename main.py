@@ -66,7 +66,7 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=No
 
 @quiet.command()
 async def lord(ctx):
-    activity = discord.Streaming(platform="Youtube", name="Streaming with image", url="!!play https://www.youtube.com/watch?v=92izkAK5OA0&feature=youtu.be", detail="SUNGKEM DULU SINI SAMA LORD", state="APA IYAH?")
+    activity = discord.Streaming(platform="Youtube", name="SUMKEM DONG AMA LORD", url="!!play https://www.youtube.com/watch?v=92izkAK5OA0")
     await quiet.change_presence(activity=activity)
 
 #--------------------------------------------
