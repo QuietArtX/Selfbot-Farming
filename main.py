@@ -63,6 +63,14 @@ def get_prefix(quiet,message):
 start_time = time.time()
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
+
+@quiet.event
+async def on_ready():
+    activity = discord.Streaming(name="Streaming with an image", url="https://www.twitch.tv/my_channel",
+                                game=discord.Game(name="SUII", type=1, url="https://www.mygame.com"),
+                                assets=discord.ActivityAssets(large_image="foto.png", large_text="LOL"))
+    await client.change_presence(activity=activity)
+
 #--------------------------------------------
 #--------------------------------------------
 
