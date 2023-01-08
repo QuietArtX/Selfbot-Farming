@@ -680,6 +680,14 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [[package]]
+name = "youtube-dl"
+version = "2021.12.17"
+description = "YouTube video downloader"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "zipp"
 version = "3.9.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -754,4 +762,5 @@ werkzeug = []
 whatthepatch = []
 yapf = []
 yarl = []
+youtube_dl = []
 zipp = []
