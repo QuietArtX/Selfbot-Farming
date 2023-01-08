@@ -246,8 +246,8 @@ async def on_message(message):
         return
 
     if message.content == "!hello":
-        await message.channel.send("Hello there!")
-    await quiet.process_command(message)
+       await message.channel.send("Hello there!")
+       await quiet.process_command(message)
 
 @quiet.command()
 async def dino(ctx):
