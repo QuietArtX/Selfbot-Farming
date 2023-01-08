@@ -286,7 +286,7 @@ async def dino(ctx):
         "🧎🦖",
         "-TAMAT-",
     ]
-    for i in a_ttl
+    for i in a_ttl:
         await asyncio.sleep(a_int)
         await message.edit(content=a_chars[i % 45])
     
