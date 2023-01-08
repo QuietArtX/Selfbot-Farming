@@ -65,7 +65,7 @@ quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
 
 @quiet.command()
-async def setstr():
+async def setstr(ctx):
     activity = discord.Activity(name="my stream", type=discord.ActivityType.streaming, url="https://www.twitch.tv/my_channel",
                                 details="Playing my game", state="level 100",
                                 large_image="https://cdn.discordapp.com/attachments/1061025685419851849/1061307014162161694/20230107_130234.png", large_text="large text",
