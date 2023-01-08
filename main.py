@@ -232,7 +232,7 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-quiet.command()
+@quiet.command()
 async def dino(ctx):
     await ctx.message.delete()
     message = await ctx.send("DIN DINNN DINOSAURUS!....")
