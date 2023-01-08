@@ -371,7 +371,8 @@ async def cat(ctx):
 
 @quiet.command()
 async def ml(ctx):
-      await ctx.send("**My ID Mobile Legends**\n> Nickname : Mystic Excaliburnn.\n> ID : 498484453 (8010)")
+      await ctx.message.delete()
+      await ctx.send("<a:icon_kawaiiBowPink:853941142713270293>  Nickname : **Mystic Excaliburnn.**\n<:icon_starsa:849642452582793246>  ID : **498484453 (8010)**\n<a:icon_loading_color:833212353054375998>  Role : **Mid/Exp**\n<a:icon_events:853946555563507712>  Squad : **None**")
 
 @quiet.command()
 async def countdown(ctx, t: int):
