@@ -244,26 +244,19 @@ async def rstatus(ctx):
 #-------------------FUN----------------------
 #============================================
 @quiet.command()
-async def giveaway(ctx, *, message):
-    # Delete the original message
-    await ctx.message.delete()
+async def start_giveaway(ctx, message_id: int):
+    # Get the message object using the message ID
+    message = await ctx.channel.fetch_message(message_id)
     
-    # Create a new message with the giveaway details
-    giveaway_message = await ctx.send(message)
-    
-    # Add the react emoji to the message
-    await giveaway_message.add_reaction("🎉")
-
-@quiet.event
-async def on_raw_reaction_add(payload):
-    # Check if the reaction is the 🎉 emoji
-    if str(payload.emoji) == "🎉":
-        # Get the message object using the message ID
-        message = await quiet.get_channel(payload.channel_id).fetch_message(payload.message_id)
-        # Get the user who added the reaction
-        user = quiet.get_user(payload.user_id)
-        # Add the user to the giveaway entries list
-        giveaway_entries.append(user)
+    # Get the reactions on the message
+    reactions = Message.reactions
+    for reaction in reactions:
+        if str(reaction.emoji) == "🎉":
+            # Get the users who reacted to the message
+            users = await reaction.users().flatten()
+            # Add the users to the giveaway entries list
+            for user in users:
+                giveaway_entries.append(user)
 
 @quiet.command()
 async def end_giveaway(ctx):
