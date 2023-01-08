@@ -478,24 +478,20 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
-async def on_ready():
-    print('Logged in as')
-    print(quiet.user.name)
-    print(quiet.user.id)
-    print('------')
-
 @quiet.command()
-async def play(ctx, url):
-    # Make sure the user is in a voice channel
-    if ctx.message.author.voice is None:
-        await ctx.send("You must be in a voice channel to use this command.")
+async def play(ctx, *, url: str):
+    song_there = os.path.isfile("song.mp3")
+    try:
+        if song_there:
+            os.remove("song.mp3")
+            print("Removed old song file")
+    except PermissionError:
+        print("Trying to delete song file, but it's being played")
+        await ctx.send("ERROR: Music playing")
         return
 
-    # Join the user's voice channel
-    voice_channel = ctx.message.author.voice.channel
-    vc = await voice_channel.connect()
+    await ctx.send("Getting everything ready now")
 
-    # Use youtube_dl to get the audio data from the URL
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
@@ -504,13 +500,40 @@ async def play(ctx, url):
             'preferredquality': '192',
         }],
     }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        audio_data = ydl.extract_info(url, download=False)
-        audio_url = audio_data['url']
 
-    # Create a StreamPlayer and start playing the audio
-    player = discord.FFmpegPCMAudio(audio_url)
-    vc.play(player)
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        print("Downloading audio now\n")
+        ydl.download([url])
+
+    for file in os.listdir("./"):
+        if file.endswith(".mp3"):
+            name = file
+            print(f"Renamed File: {file}\n")
+            os.rename(file, "song.mp3")
+
+    voice = get(quiet.voice_clients, guild=ctx.guild)
+
+    if voice and voice.is_connected():
+        await voice.disconnect()
+        print("The bot left the voice channel")
+
+    channel = ctx.message.author.voice.channel
+    voice = get(quiet.voice_clients, guild=ctx.guild)
+
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+        print(f"The bot moved to {channel}")
+    else:
+        voice = await channel.connect()
+        print(f"The bot has connected to {channel}")
+
+    voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: print("Song done!"))
+    voice.source = discord.PCMVolumeTransformer(voice.source)
+    voice.source.volume = 0.07
+
+    nname = name.rsplit("-", 2)
+    await ctx.send(f"Playing: {nname[0]}")
+    print("playing\n")
 
 @quiet.event
 async def on_message(message):
