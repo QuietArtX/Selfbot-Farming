@@ -253,9 +253,9 @@ async def giveaway(ctx, *, message):
     await giveaway_message.add_reaction("🎉")
 
 @quiet.command()
-async def end_giveaway(ctx):
+async def end_giveaway(ctx, message):
     # Get the users who reacted to the message
-    reactions = giveaway_message.reactions
+    reactions = message.reactions
     for reaction in reactions:
         if str(reaction.emoji) == "🎉":
             users = await reaction.users().flatten()
