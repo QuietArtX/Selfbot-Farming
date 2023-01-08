@@ -246,9 +246,9 @@ async def on_raw_reaction_add(payload):
     # Check if the reaction is the 🎉 emoji
     if str(payload.emoji) == "🎉":
         # Get the message object using the message ID
-        message = await client.get_channel(payload.channel_id).fetch_message(payload.message_id)
+        message = await quiet.get_channel(payload.channel_id).fetch_message(payload.message_id)
         # Get the user who added the reaction
-        user = client.get_user(payload.user_id)
+        user = quiet.get_user(payload.user_id)
         # Add the user to the giveaway entries list
         giveaway_entries.append(user)
 
