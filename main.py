@@ -237,7 +237,7 @@ async def dino(ctx):
     await ctx.message.delete()
     message = await ctx.send("DIN DINNN DINOSAURUS!....")
     a_int = 1
-    a_ttl = range(48)
+    a_ttl = range(45)
     a_chars = [
         "🏃                        🦖",
         "🏃                       🦖",
@@ -288,7 +288,7 @@ async def dino(ctx):
     ]
     for i in a_ttl
         await asyncio.sleep(a_int)
-        await message.edit(content=a_chars[i % 48])
+        await message.edit(content=a_chars[i % 45])
     
 
 @quiet.command()
