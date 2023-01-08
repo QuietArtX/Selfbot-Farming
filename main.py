@@ -242,26 +242,12 @@ async def rstatus(ctx):
 #============================================
 @quiet.event
 async def on_message(message):
+    if message.author == discord.User:
+        return
 
-     try:
-
-         if message.author == quiet.user:
-           return
-
-         if message.content == "Malam":
-           await message.channel.send("Good Night Too Dear!")
-         else:
-           response = await client.wait_for('message', check=check_for_hello)
-           await response.channel.send("Good Night Too Dear!")
-
-     except:
-         pass
-       
-     await quiet.process_command(message)
-
-def check_for_malam(message):
-    return message.content == "Malam"
-
+    if message.content == "!hello":
+        await message.channel.send("Hello there!")
+    await quiet.process_command(message)
 
 @quiet.command()
 async def dino(ctx):
