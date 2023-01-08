@@ -480,17 +480,9 @@ async def leave(ctx):
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
 @quiet.command()
-async def play(ctx, url: str):
-    # Get the audio data from the URL
-    audio_data = pafy.new(url).getbestaudio().url
-    # Create an AudioSource object from the audio data
-    audio_source = discord.AudioSource(audio_data)
-    # Create a PCMVolumeTransformer object from the AudioSource object
-    audio_player = discord.PCMVolumeTransformer(audio_source)
-    # Join the voice channel and start playing the audio
-    voice_channel = ctx.author.voice.channel
-    await voice_channel.connect()
-    audio_player.start()
+async def play(ctx, url):
+    audio_player = discord.PCMVolumeTransformer(discord.AudioSource(url))
+    ctx.voice_client.play(audio_player, after=lambda e: print('Player error: %s' % e) if e else None)
 
 
 @quiet.event
