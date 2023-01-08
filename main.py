@@ -27,6 +27,7 @@ import typing
 import random
 import time
 import quiet
+import pafy
 import youtube_dl
 
 try:
@@ -480,19 +481,17 @@ async def leave(ctx):
 
 @quiet.command()
 async def play(ctx, url: str):
-    # Get the voice channel the user is in
-    channel = ctx.author.voice.channel
-    if channel is None:
-        return await ctx.send("You are not connected to a voice channel.")
-    
-    # Create a PCMVolumeTransformer object to control the volume
-    # of the audio and an AudioSource object to play the audio
-    audio_source = discord.PCMVolumeTransformer(discord.AudioSource(url))
-    audio_source.volume = 0.5  # Set the volume to 50%
-    
+    # Get the audio data from the URL
+    audio_data = pafy.new(url).getbestaudio().url
+    # Create an AudioSource object from the audio data
+    audio_source = discord.AudioSource(audio_data)
+    # Create a PCMVolumeTransformer object from the AudioSource object
+    audio_player = discord.PCMVolumeTransformer(audio_source)
     # Join the voice channel and start playing the audio
-    vc = await channel.connect()
-    vc.play(audio_source)
+    voice_channel = ctx.author.voice.channel
+    await voice_channel.connect()
+    audio_player.start()
+
 
 @quiet.event
 async def on_message(message):
