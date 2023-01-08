@@ -487,8 +487,9 @@ client = commands.Bot(command_prefix='!')
 async def play(ctx, url: str):
     """Plays a song from YouTube."""
     # Connect to voice channel
-    channel = ctx.author.voice.channel
-    await channel.connect()
+    if ctx.author.voice is not None:
+       channel = ctx.author.voice.channel
+       await channel.connect()
 
     # Play song
     player = await YTDLSource.from_url(url, loop=client.loop)
