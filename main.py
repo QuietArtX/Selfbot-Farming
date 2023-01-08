@@ -478,6 +478,12 @@ async def leave(ctx):
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
 
+async def on_ready():
+    print('Logged in as')
+    print(quiet.user.name)
+    print(quiet.user.id)
+    print('------')
+
 @quiet.command()
 async def play(ctx, url):
     # Make sure the user is in a voice channel
