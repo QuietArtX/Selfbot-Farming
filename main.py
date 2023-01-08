@@ -256,10 +256,10 @@ async def start_giveaway(ctx, message_id: int):
             break
     
     # Get the message object using the message ID
-    async for message in channel.history(limit=1):
+    async for message in channel.history(limit=3):
         if message.id == message_id:
             # Get the reactions on the message
-            reactions = message.reactions
+            reactions = Message.reactions
             for reaction in reactions:
                 if str(reaction.emoji) == "🎉":
                     # Get the users who reacted to the message
