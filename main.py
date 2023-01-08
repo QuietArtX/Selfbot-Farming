@@ -240,6 +240,21 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
+@quiet.event
+async def on_message(message):
+    if message.author == quiet.user:
+        return
+
+    if message.content == "Malam":
+        await message.channel.send("Good Night Too Dear!")
+    else:
+        response = await client.wait_for('message', check=check_for_hello)
+        await response.channel.send("Good Night Too Dear!")
+
+def check_for_malam(message):
+    return message.content == "Malam"
+
+
 @quiet.command()
 async def dino(ctx):
     await ctx.message.delete()
