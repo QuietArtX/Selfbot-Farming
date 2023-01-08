@@ -702,6 +702,17 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [[package]]
+name = "pafy"
+version = "0.5.5"
+description = "Retrieve YouTube content and metadata"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+youtube-dl-backend = ["youtube-dl"]
+
+[[package]]
 name = "youtube-dl"
 version = "2021.12.17"
 description = "YouTube video downloader"
@@ -786,5 +797,6 @@ werkzeug = []
 whatthepatch = []
 yapf = []
 yarl = []
+pafy = []
 youtube-dl = []
 zipp = []
