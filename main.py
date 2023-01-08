@@ -23,6 +23,7 @@ from googleapiclient.discovery import build
 from datetime import datetime, timedelta, timezone
 import os
 import re
+import pafy
 import typing
 import random
 import time
@@ -484,16 +485,15 @@ from discord.ext import commands
 client = commands.Bot(command_prefix='!')
 
 @quiet.command()
-async def play(ctx, url: str):
-    """Plays a song from YouTube."""
-    # Connect to voice channel
-    if ctx.author.voice is not None:
-       channel = ctx.author.voice.channel
-       await channel.connect()
+async def play(ctx, url):
+    # Get the audio stream from the YouTube video
+    video = pafy.new(url)
+    best_audio = video.getbestaudio()
+    audio_url = best_audio.url
 
-    # Play song
-    player = await YTDLSource.from_url(url, loop=client.loop)
-    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+    # Create a voice client and play the audio
+    voice_client = await ctx.author.voice.channel.connect()
+    voice_client.play(audio_url)
 
 @quiet.event
 async def on_message(message):
