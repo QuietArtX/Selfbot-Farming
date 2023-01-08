@@ -471,7 +471,7 @@ async def join(ctx, voice_channel : discord.VoiceChannel):
     data = {"guild":str(ctx.guild.id),"channel":str(voice_channel.id)}
     with open("data.json", "w") as f:
         json.dump(data, f)
-    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=False)
+    await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=True)
     await ctx.send("> Join to Voice Channel **Successful**")
     print(f"{Fore.GREEN}[-]{Fore.WHITE} Connected to {Fore.CYAN}{voice_channel} {Fore.WHITE}in {Fore.CYAN}{voice_channel.guild}{Fore.WHITE}.")
 
