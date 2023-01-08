@@ -64,11 +64,12 @@ start_time = time.time()
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None)
 
-@quiet.event
-async def on_ready():
-    activity = discord.Streaming(name="Streaming with an image", url="https://www.twitch.tv/my_channel",
-                                game=discord.Game(name="SUII", type=1, url="https://www.mygame.com"),
-                                assets=discord.ActivityAssets(large_image="foto.png", large_text="LOL"))
+@quiet.command()
+async def setstr():
+    activity = discord.Activity(name="my stream", type=discord.ActivityType.streaming, url="https://www.twitch.tv/my_channel",
+                                details="Playing my game", state="level 100",
+                                large_image="https://cdn.discordapp.com/attachments/1061025685419851849/1061307014162161694/20230107_130234.png", large_text="large text",
+                                small_image="https://cdn.discordapp.com/attachments/1061025685419851849/1061307014162161694/20230107_130234.png", small_text="small text")
     await client.change_presence(activity=activity)
 
 #--------------------------------------------
