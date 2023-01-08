@@ -232,21 +232,64 @@ async def rstatus(ctx):
 #============================================
 #-------------------FUN----------------------
 #============================================
-@quiet.command()
-async def anim(ctx):
+quiet.command()
+async def dino(ctx):
     await ctx.message.delete()
-    message = await ctx.send("Oyy...")
-    animation_interval = 1
-    animation_ttl = range(4)
-    animation_chars = [
-       "KYIOOMASAAA",
-       "NANDE NANDE",
-       "BAKAAA",
-       "BUSET DAH",
+    message = await ctx.send("DIN DINNN DINOSAURUS!....")
+    a_int = 1
+    a_ttl = range(48)
+    a_chars = [
+        "🏃                        🦖",
+        "🏃                       🦖",
+        "🏃                      🦖",
+        "🏃                     🦖",
+        "🏃     LARII          🦖",
+        "🏃                   🦖",
+        "🏃                  🦖",
+        "🏃                 🦖",
+        "🏃                🦖",
+        "🏃               🦖",
+        "🏃              🦖",
+        "🏃             🦖",
+        "🏃            🦖",
+        "🏃           🦖",
+        "🏃WOARGH!   🦖",
+        "🏃           🦖",
+        "🏃            🦖",
+        "🏃             🦖",
+        "🏃              🦖",
+        "🏃               🦖",
+        "🏃                🦖",
+        "🏃                 🦖",
+        "🏃                  🦖",
+        "🏃                   🦖",
+        "🏃                    🦖",
+        "🏃                     🦖",
+        "🏃  Huh-Huh           🦖",
+        "🏃                   🦖",
+        "🏃                  🦖",
+        "🏃                 🦖",
+        "🏃                🦖",
+        "🏃               🦖",
+        "🏃              🦖",
+        "🏃             🦖",
+        "🏃            🦖",
+        "🏃           🦖",
+        "🏃          🦖",
+        "🏃         🦖",
+        "DIA SEMAKIN MENDEKAT!!!",
+        "🏃       🦖",
+        "🏃      🦖",
+        "🏃     🦖",
+        "🏃    🦖",
+        "Dahlah Pasrah Aja",
+        "🧎🦖",
+        "-TAMAT-",
     ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await message.edit(content=animation_chars[i % 4])
+    for i in a_ttl
+        await asyncio.sleep(a_int)
+        await message.edit(content=a_chars[i % 48])
+    
 
 @quiet.command()
 async def bulan(ctx):
