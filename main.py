@@ -27,6 +27,7 @@ import typing
 import random
 import time
 import quiet
+import youtube_dl
 
 try:
     import shutil
@@ -476,6 +477,11 @@ async def leave(ctx):
         json.dump({"guild":None,"channel":None}, f)
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
+
+@quiet.command(pass_context=True)
+async def play(ctx, url):
+    server = ctx.message.guild.voice_client
+    server.play(discord.FFmpegPCMAudio(url))
 
 @quiet.event
 async def on_message(message):
