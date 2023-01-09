@@ -728,7 +728,10 @@ async def weather(ctx, *, city: str=None):
         temperature = weather_data["main"]["temp"]
         humidity = weather_data["main"]["humidity"]
         weather_code = weather_data["weather"][0]["id"]
-        description = weather_data["weather"][0]["description"]        
+        description = weather_data["weather"][0]["description"]
+        wind_speed_mps = weather_data["wind"]["speed"]
+        wind_speed_kph = wind_speed_mps * 3.6
+        
         # Get the appropriate icon based on the weather code
         if weather_code >= 200 and weather_code <= 232:
             icon = ":cloud_lightning:"
@@ -752,15 +755,19 @@ async def weather(ctx, *, city: str=None):
             description = "**Berkabut**"
         elif weather_code == 800:
             icon = ":sunny:"
+            description = "**Awan Yang Cerah**
         elif weather_code == 801:
             icon = ":partly_sunny:"
+            description = "**Berawan**
         elif weather_code >= 802 and weather_code <= 804:
             icon = ":cloud:"
+            description = "**Berawan**
         else:
             icon = ":sunny:"
+            weather_condition = "clear"
 
         # Send the weather data to the user
-        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**\n**{description}**\n**Angin**: {wind.speed}/sec")
+        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**\n**{description}**\nAngin: **{wind_speed_mps}**km/h")
 
 @quiet.command()
 async def search(ctx, *, query):
