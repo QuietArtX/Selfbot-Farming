@@ -755,13 +755,13 @@ async def weather(ctx, *, city: str=None):
             description = "**Berkabut**"
         elif weather_code == 800:
             icon = ":sunny:"
-            description = "**Awan Yang Cerah**
+            description = "**Awan Yang Cerah**"
         elif weather_code == 801:
             icon = ":partly_sunny:"
-            description = "**Berawan**
+            description = "**Berawan**"
         elif weather_code >= 802 and weather_code <= 804:
             icon = ":cloud:"
-            description = "**Berawan**
+            description = "**Berawan**"
         else:
             icon = ":sunny:"
             weather_condition = "clear"
