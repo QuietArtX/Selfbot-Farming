@@ -760,7 +760,7 @@ async def weather(ctx, *, city: str=None):
             icon = ":sunny:"
 
         # Send the weather data to the user
-        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humadity}%**\n**{description}**\n**Angin**: {wind.speed}/sec")
+        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**\n**{description}**\n**Angin**: {wind.speed}/sec")
 
 @quiet.command()
 async def search(ctx, *, query):
