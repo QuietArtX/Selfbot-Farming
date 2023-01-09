@@ -732,6 +732,9 @@ async def weather(ctx, *, city: str=None):
         description = weather_data["weather"][0]["description"]
         wind_speed_mps = weather_data["wind"]["speed"]
         wind_speed_kph = wind_speed_mps * 3.6
+        now = datetime.datetime.now()
+        date_time = now.strftime("%d/%m/%Y %H:%M:%S")
+        day_of_week = now.strftime("%A")
         
         # Get the appropriate icon based on the weather code
         if weather_code >= 200 and weather_code <= 232:
@@ -768,7 +771,7 @@ async def weather(ctx, *, city: str=None):
             weather_condition = "clear"
 
         # Send the weather data to the user
-        await ctx.send(f"⊸ 𝐂𝐔𝐀𝐂𝐀 𝐇𝐀𝐑𝐈 𝐈𝐍𝐈\n**{city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**| {description}\nKecepatan Angin: **{wind_speed_mps}**km/h")
+        await ctx.send(f"⊸ 𝐂𝐔𝐀𝐂𝐀 𝐇𝐀𝐑𝐈 𝐈𝐍𝐈\n\n> **{city}**\n\n> {icon} {temperature}°C | Kelembapan : **{humidity}%** | {description}\n> Kecepatan Angin: **{wind_speed_mps}**km/h\n> {day_of_week}, {date_time}")
 
 @quiet.command()
 async def search(ctx, *, query):
