@@ -66,6 +66,7 @@ quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
 
 giveaway_entries = []
+API_KEY = "28bf153817808a7c28697f2b4bbbff39"
 
 @quiet.command()
 async def lord(ctx):
@@ -711,10 +712,10 @@ async def uptime(ctx):
     message += f'{uptime_seconds} Seconds.\n```'
     await ctx.send(message)
     
-@quiet.command()  
+@quiet.command()
 async def weather(ctx, *, city: str):
     # Get the current weather data for the city
-    weather_data = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid=28bf153817808a7c28697f2b4bbbff39&units=metric").json()
+    weather_data = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric").json()
     
     # Check if the city was found
     if weather_data["cod"] == "404":
@@ -725,8 +726,22 @@ async def weather(ctx, *, city: str):
         humidity = weather_data["main"]["humidity"]
         description = weather_data["weather"][0]["description"]
         
+        # Build a more descriptive weather condition
+        if "clear" in description:
+            weather_condition = "sunny"
+        elif "clouds" in description:
+            weather_condition = "cloudy"
+        elif "rain" in description:
+            weather_condition = "rainy"
+        elif "snow" in description:
+            weather_condition = "snowy"
+        elif "storm" in description:
+            weather_condition = "stormy"
+        else:
+            weather_condition = description
+        
         # Send the weather data to the user
-        await ctx.send(f"Temperature: {temperature}°C\nHumidity: {humidity}%\nConditions: {description}")
+        await ctx.send(f"The weather in {city} is currently {weather_condition} with a temperature of {temperature}°C and a humidity of {humidity}%.")
 
 @quiet.command()
 async def search(ctx, *, query):
