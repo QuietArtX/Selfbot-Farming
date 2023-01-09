@@ -722,26 +722,33 @@ async def weather(ctx, *, city: str):
         await ctx.send("City not found.")
     else:
         # Get the current temperature, humidity, and weather description
+        weather.main Group of weather parameters
         temperature = weather_data["main"]["temp"]
         humidity = weather_data["main"]["humidity"]
-        description = weather_data["weather"][0]["description"]
+        weather_code = weather_data["weather"][0]["id"]
         
-        # Build a more descriptive weather condition
-        if "clear" in description:
-            weather_condition = "sunny"
-        elif "clouds" in description:
-            weather_condition = "cloudy"
-        elif "rain" in description:
-            weather_condition = "rainy"
-        elif "snow" in description:
-            weather_condition = "snowy"
-        elif "storm" in description:
-            weather_condition = "stormy"
+        # Get the appropriate icon based on the weather code
+        if weather_code >= 200 and weather_code <= 232:
+            icon = ":cloud_lightning:"
+        elif weather_code >= 300 and weather_code <= 321:
+            icon = ":cloud_rain:"
+        elif weather_code >= 500 and weather_code <= 531:
+            icon = ":cloud_rain:"
+        elif weather_code >= 600 and weather_code <= 622:
+            icon = ":cloud_snow:"
+        elif weather_code >= 700 and weather_code <= 781:
+            icon = ":fog:"
+        elif weather_code == 800:
+            icon = ":sunny:"
+        elif weather_code == 801:
+            icon = ":partly_sunny:"
+        elif weather_code >= 802 and weather_code <= 804:
+            icon = ":cloud:"
         else:
-            weather_condition = description
-        
+            icon = ":sunny:"
+
         # Send the weather data to the user
-        await ctx.send(f"The weather in {city} is currently {weather_condition} with a temperature of {temperature}°C and a humidity of {humidity}%.")
+        await ctx.send(f"{icon} The weather in {city} is currently {temperature}°C with a humidity of {humidity}%.")
 
 @quiet.command()
 async def search(ctx, *, query):
