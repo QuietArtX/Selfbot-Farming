@@ -771,7 +771,7 @@ async def weather(ctx, *, city: str=None):
             weather_condition = "clear"
 
         # Send the weather data to the user
-        await ctx.send(f"⊸ 𝐂𝐔𝐀𝐂𝐀 𝐇𝐀𝐑𝐈 𝐈𝐍𝐈\n\n> **{city}**\n> {icon} {temperature}°C | Kelembapan : **{humidity}%** | {description}\n> Kecepatan Angin: **{wind_speed_mps}**km/h\n> **{day_of_week}**, {date_time}")
+        await ctx.send(f"❏ 𝐂𝐔𝐑𝐑𝐄𝐍𝐓𝐋𝐘 𝐖𝐄𝐀𝐓𝐇𝐄𝐑\n> **{city}**\n> {icon} {temperature}°C | Kelembapan : **{humidity}%** | {description}\n> Kecepatan Angin: **{wind_speed_mps}**km/h\n> **{day_of_week}**, {date_time}")
 
 @quiet.command()
 async def search(ctx, *, query):
