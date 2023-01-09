@@ -732,14 +732,24 @@ async def weather(ctx, *, city: str=None):
         # Get the appropriate icon based on the weather code
         if weather_code >= 200 and weather_code <= 232:
             icon = ":cloud_lightning:"
+            weather_condition = "thunderstorm"
+            description = "**Hujan Badai disertai Gerimis Lebat**"
         elif weather_code >= 300 and weather_code <= 321:
             icon = ":cloud_rain:"
+            weather_condition = "drizzle"
+            description = "**Gerimis**"
         elif weather_code >= 500 and weather_code <= 531:
             icon = ":cloud_rain:"
+            weather_condition = "rainy"
+            description = "**Hujan Deras**"
         elif weather_code >= 600 and weather_code <= 622:
             icon = ":cloud_snow:"
+            weather_condition= "snow"
+            description = "**Salju Ringan**"
         elif weather_code >= 700 and weather_code <= 781:
             icon = ":fog:"
+            weather_condition = "fog"
+            description = "**Berkabut**"
         elif weather_code == 800:
             icon = ":sunny:"
         elif weather_code == 801:
@@ -750,7 +760,7 @@ async def weather(ctx, *, city: str=None):
             icon = ":sunny:"
 
         # Send the weather data to the user
-        await ctx.send(f"{icon} The weather in {city} is currently {temperature}°C with a humidity of {humidity}%.")
+        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humadity}%**\n**{description}**\n**Angin**: {wind.speed}/sec")
 
 @quiet.command()
 async def search(ctx, *, query):
