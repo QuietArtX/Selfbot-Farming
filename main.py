@@ -714,6 +714,7 @@ async def uptime(ctx):
     
 @quiet.command()
 async def weather(ctx, *, city: str=None):
+    await ctx.message.delete()
     if city is None:
        await ctx.send("Enter City/Country Name!")
     # Get the current weather data for the city
@@ -721,7 +722,7 @@ async def weather(ctx, *, city: str=None):
     
     # Check if the city was found
     if weather_data["cod"] == "404":
-        await ctx.send("City not found.")
+        await ctx.send("```\nKota/Negara tidak ditemukan!.\n```")
     else:
         # Get the current temperature, humidity, and weather description
         #weather.main Group of weather parameters
@@ -767,7 +768,7 @@ async def weather(ctx, *, city: str=None):
             weather_condition = "clear"
 
         # Send the weather data to the user
-        await ctx.send(f"**CUACA HARI INI DI {city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**\n**{description}**\nAngin: **{wind_speed_mps}**km/h")
+        await ctx.send(f"⊸ 𝐂𝐔𝐀𝐂𝐀 𝐇𝐀𝐑𝐈 𝐈𝐍𝐈\n**{city}**\n\n> {icon}{temperature}°C | Kelembapan : **{humidity}%**| {description}\nKecepatan Angin: **{wind_speed_mps}**km/h")
 
 @quiet.command()
 async def search(ctx, *, query):
