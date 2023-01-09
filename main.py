@@ -722,7 +722,7 @@ async def weather(ctx, *, city: str):
         await ctx.send("City not found.")
     else:
         # Get the current temperature, humidity, and weather description
-        weather.main Group of weather parameters
+        #weather.main Group of weather parameters
         temperature = weather_data["main"]["temp"]
         humidity = weather_data["main"]["humidity"]
         weather_code = weather_data["weather"][0]["id"]
