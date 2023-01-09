@@ -712,15 +712,21 @@ async def uptime(ctx):
     await ctx.send(message)
     
 @quiet.command()  
-async def weather(ctx, location):
-    await ctx.message.delete()
-    response = requests.get(f'https://api.openweathermap.org/data/2.5/weather?q={location}&appid=28bf153817808a7c28697f2b4bbbff39')
-    weather_data = response.json()
-    temperature = weather_data['main']['temp']
-    humidity = weather_data['main']['humidity']
-    wind_speed = weather_data['wind']['speed']
-    # Send a message to the channel with the weather information
-    await ctx.send(f'> **The weather in {location} is currently {temperature}°F, with {humidity}% humidity and {wind_speed} mph winds.**')
+async def weather(ctx, *, city: str):
+    # Get the current weather data for the city
+    weather_data = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid=28bf153817808a7c28697f2b4bbbff39&units=metric").json()
+    
+    # Check if the city was found
+    if weather_data["cod"] == "404":
+        await ctx.send("City not found.")
+    else:
+        # Get the current temperature, humidity, and weather description
+        temperature = weather_data["main"]["temp"]
+        humidity = weather_data["main"]["humidity"]
+        description = weather_data["weather"][0]["description"]
+        
+        # Send the weather data to the user
+        await ctx.send(f"Temperature: {temperature}°C\nHumidity: {humidity}%\nConditions: {description}")
 
 @quiet.command()
 async def search(ctx, *, query):
