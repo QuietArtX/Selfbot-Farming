@@ -713,9 +713,9 @@ async def uptime(ctx):
     await ctx.send(message)
     
 @quiet.command()
-async def weather(ctx, *, city: str):
+async def weather(ctx, *, city: str=None):
     if city is None:
-       await ctx.send("Enter City/Country Name")
+       await ctx.send("Enter City/Country Name!")
     # Get the current weather data for the city
     weather_data = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric").json()
     
