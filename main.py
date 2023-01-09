@@ -728,7 +728,7 @@ async def weather(ctx, *, city: str=None):
         temperature = weather_data["main"]["temp"]
         humidity = weather_data["main"]["humidity"]
         weather_code = weather_data["weather"][0]["id"]
-        
+        description = weather_data["weather"][0]["description"]        
         # Get the appropriate icon based on the weather code
         if weather_code >= 200 and weather_code <= 232:
             icon = ":cloud_lightning:"
