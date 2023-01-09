@@ -732,7 +732,7 @@ async def weather(ctx, *, city: str=None):
         description = weather_data["weather"][0]["description"]
         wind_speed_mps = weather_data["wind"]["speed"]
         wind_speed_kph = wind_speed_mps * 3.6
-        now = datetime.datetime.now()
+        now = datetime.now()
         date_time = now.strftime("%d/%m/%Y %H:%M:%S")
         day_of_week = now.strftime("%A")
         
