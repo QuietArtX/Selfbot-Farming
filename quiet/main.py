@@ -29,14 +29,17 @@ import time
 import pafy
 import youtube_dl
 import importlib
+from quiet.setting import get_prefix
 
+quiet = discord.Client()
+quiet = commands.Bot(command_prefix=get_prefix, selfbot=True)
 for filename in os.listdir("quiet/allcmd"):
     if filename.endswith(".py"):
         module_name = filename[:-3]
         module = importlib.import_module(f"allcmd.{module_name}")
         for name, obj in vars(module).items():
             if isinstance(obj, discord.ext.commands.core.Command):
-                client.add_command(obj)
+                quiet.add_command(obj)
 
 
 print(f'''
