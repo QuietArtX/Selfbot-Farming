@@ -2,8 +2,18 @@ import discord
 import time
 import requests
 from discord.ext import commands
-from main import get_prefix
 
+
+def get_prefix(quiet,message):
+    with open("quiet/setting/prefixes.json", "r") as f:
+      prefixes = json.load(f)
+
+    return prefixes 
+
+start_time = time.time()
+quiet = discord.Client()
+quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
+quiet.add_command(sui)
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
 
