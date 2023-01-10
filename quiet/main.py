@@ -56,7 +56,7 @@ def getstatus(m):
     return m.status
 
 def get_prefix(quiet,message):
-    with open("quiet/prefixes.json", "r") as f:
+    with open("quiet/setting/prefixes.json", "r") as f:
       prefixes = json.load(f)
 
     return prefixes 
@@ -178,12 +178,12 @@ async def gban(ctx, x: int):
 async def cprefix(ctx, *, prefix):
     await ctx.message.delete()
 
-    with open("quiet/prefixes.json", "r") as f:
+    with open("quiet/setting/prefixes.json", "r") as f:
       prefixes = json.load(f)
 
     prefixes = prefix
 
-    with open("quiet/prefixes.json", "w") as f:
+    with open("quiet/setting/prefixes.json", "w") as f:
       json.dump(prefixes,f)
     await ctx.send(f"> Prefix Has Been Changed To **{prefix}**")
 
@@ -195,7 +195,7 @@ async def on_message(msg):
 
          if msg.mention[1] == quiet.user:
 
-              with open("quiet/prefixes.json", "r") as f:
+              with open("quiet/setting/prefixes.json", "r") as f:
                  prefixes = json.load(f)
 
               pre = prefixes
@@ -501,7 +501,7 @@ async def hack(ctx):
 #============================================
 @quiet.event
 async def on_ready():
-    with open("data.json", "r") as f:
+    with open("quiet/setting/data.json", "r") as f:
         data = json.load(f)
     if data["guild"] == None or data["channel"] == None:
         pass
@@ -519,7 +519,7 @@ async def join(ctx, voice_channel : discord.VoiceChannel):
     await ctx.message.delete()
     await voice_channel.connect()
     data = {"guild":str(ctx.guild.id),"channel":str(voice_channel.id)}
-    with open("data.json", "w") as f:
+    with open("quiet/setting/data.json", "w") as f:
         json.dump(data, f)
     await ctx.guild.change_voice_state(channel=voice_channel, self_mute=False, self_deaf=True)
     await ctx.send("> Join to Voice Channel **Successful**")
@@ -530,7 +530,7 @@ async def leave(ctx):
     await ctx.message.delete()
     voice_client = ctx.message.guild.voice_client
     await voice_client.disconnect()
-    with open("data.json", "w") as f:
+    with open("quiet/setting/data.json", "w") as f:
         json.dump({"guild":None,"channel":None}, f)
     await ctx.send("> Leave From Voice Channel **Sucsessful**")
     print(f"{Fore.RED}[-]{Fore.WHITE} Disconnected from {Fore.CYAN}{voice_client.channel}{Fore.WHITE} in {Fore.CYAN}{ctx.message.guild}{Fore.WHITE}.")
