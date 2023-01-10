@@ -793,7 +793,7 @@ async def on_message(message):
              await message.channel.send("Hello, this is your auto-reply message")
    except:
       pass
-   await quiet.process_command(message)
+   await quiet.process_commands(message)
 
 #============================================
 #----------------DATABASE--------------------
