@@ -3,13 +3,6 @@ import time
 import requests
 from discord.ext import commands
 
-start_time = time.time()
-quiet = discord.Client()
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
-quiet.add_command(sui)
-quiet = discord.Client()
-quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
-
 @quiet.command()
 async def uptime(ctx):
     await ctx.message.delete()
