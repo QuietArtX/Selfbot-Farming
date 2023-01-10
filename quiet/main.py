@@ -9,7 +9,6 @@
 #------------------MODULE--------------------
 import discord
 from discord.ext import commands
-from discord.ext.commands.bot import on_message
 from discord.utils import get
 import colorama
 from colorama import Fore
