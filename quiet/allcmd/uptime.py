@@ -3,6 +3,8 @@ import time
 import requests
 from discord.ext import commands
 
+quiet = discord.Client
+
 @quiet.command()
 async def uptime(ctx):
     await ctx.message.delete()
