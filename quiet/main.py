@@ -17,7 +17,7 @@ import os
 from webserver import keep_alive
 import re
 import importlib
-from uptime import uptime
+from allcmd.uptime import uptime
 
 def get_prefix(quiet,message):
     with open("quiet/setting/prefixes.json", "r") as f:
