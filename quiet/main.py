@@ -662,19 +662,21 @@ async def serverinfo(ctx):
     await ctx.message.delete()
     await ctx.send("*Getting ServerInfo...*", delete_after=3)
     await asyncio.sleep(3)
-    server = ctx.guild
-
+    guild = ctx.guild
+    online = len([m.status for m in guild.members if m.status == discord.Status.online or m.status == discord.Status.idle])
+    offline = len([m.status for m in guild.members if m.status == discord.Status.offline])
+    total_users = online + offline
     member = ctx.author
 
-    name = server.name
-    id = server.id
-    member_count = len(server.members)
-    owner = server.owner
-    owner_id = server.owner_id
-    icon_url = server.icon_url
-    created = server.created_at
-    level = server.premium_tier
-    tboost = server.premium_subscription_count
+    name = guild.name
+    id = guild.id
+    member_count = len(guild.members)
+    owner = guild.owner
+    owner_id = guild.owner_id
+    icon_url = guild.icon_url
+    created = guild.created_at
+    level = guild.premium_tier
+    tboost = guild.premium_subscription_count
     
 
     user_name = member.name
@@ -686,7 +688,7 @@ async def serverinfo(ctx):
                f"> ▸ Server ID: **{id}**\n"
                f"> ▸ Level Boost: **{level}\n"
                f"> ▸ Total Boost: **{tboost}**\n"
-               f"> ▸ All Members: **{member_count}**\n"
+               f"> ▸ All Members: **{total_users}**\n"
                f"> ▸ Owner: **{owner}**\n"
                f"> ▸ Owner ID: **{owner_id}**\n"
                f"> ▸ Created At: **{created}**\n"
