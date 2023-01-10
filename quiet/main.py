@@ -790,7 +790,7 @@ async def search(ctx, *, query):
 async def on_message(message):
     if message.author != quiet.user:
         if message.guild is None:
-            await message.channel.send('Hello, this is your auto-reply messag")
+            await message.channel.send('Hello, this is your auto-reply messag')
         else:
             await quiet.process_commands(message)
 
