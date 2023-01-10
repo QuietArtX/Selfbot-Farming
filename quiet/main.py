@@ -66,6 +66,7 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=No
 giveaway_entries = []
 API_KEY = "28bf153817808a7c28697f2b4bbbff39"
 owners = [989430735561715712, 1048214159877226547]
+channel_ids = [1062228651233513552, 1060875376009695266, 1060875376009695265]
 
 @quiet.event
 async def on_message(message):
@@ -789,8 +790,9 @@ async def search(ctx, *, query):
 async def on_message(message):
    try:
       if message.author != quiet.user:
-         if "keyword" in message.content:
-             await message.channel.send("Hello, this is your auto-reply message")
+         if message.channel.id in channel_ids:
+             if "keyword" in message.content:
+                 await message.channel.send("Hello, this is your auto-reply message")
    except:
       pass
    await quiet.process_commands(message)
