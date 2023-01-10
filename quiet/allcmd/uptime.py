@@ -3,8 +3,9 @@ import time
 import requests
 from discord.ext import commands
 
+
 quiet = discord.Client()
-quiet = commands.Bot(command_prefix=get_prefix, selfbot=True, help_command=None)
+quiet = commands.Bot(command_prefix=quiet.command_prefix, selfbot=True, help_command=None)
 @quiet.command()
 start_time = time.time()
 
