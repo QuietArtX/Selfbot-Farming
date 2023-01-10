@@ -12,26 +12,19 @@ from discord.ext import commands
 from discord.utils import get
 import colorama
 from colorama import Fore
-import requests
-import google
-import sys
-import asyncio
 import json
-import googleapiclient
-from webserver import keep_alive
-from googleapiclient.discovery import build
-from datetime import datetime, timedelta, timezone
 import os
 import re
-import typing
-import random
-import time
-import pafy
-import youtube_dl
 import importlib
 
+def get_prefix(quiet,message):
+    with open("quiet/setting/prefixes.json", "r") as f:
+      prefixes = json.load(f)
+
+    return prefixes 
 
 quiet = discord.Client()
+quiet = commands.Bot(command_prefix=get_prefix, selfbot=True, help_command=None)
 for filename in os.listdir("quiet/allcmd"):
     if filename.endswith(".py"):
         module_name = filename[:-3]
