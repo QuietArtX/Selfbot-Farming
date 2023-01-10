@@ -48,11 +48,6 @@ except:
 prefix = "!!"
 username = "yourusername#1234"
 
-def is_owner():
-    async def predicate(ctx):
-        return ctx.author.id in owners
-    return commands.check(predicate)
-
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
         return "do not disturb"
@@ -278,14 +273,10 @@ async def end_giveaway(ctx):
         winner = random.choice(giveaway_entries)
         await ctx.send(f"The winner of the giveaway is {winner.mention}!")
 
-@quiet.event
-async def on_message(message):
-    if message.author == discord.User:
-        return
-
-    if message.content == "!hello":
-       await message.channel.send("Hello there!")
-       await quiet.process_command(message)
+def is_owner():
+    async def predicate(ctx):
+        return ctx.author.id in owners
+    return commands.check(predicate)
 
 @quiet.command()
 @is_owner()
