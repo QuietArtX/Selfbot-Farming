@@ -786,7 +786,7 @@ async def search(ctx, *, query):
 #-------------------END----------------------
 #============================================
 
-@quiet.event
+@quiet.add_listener(on_message, "on_message")
 async def on_message(message):
    try:
       if message.author != quiet.user:
