@@ -29,8 +29,9 @@ import time
 import pafy
 import youtube_dl
 import importlib
+import quiet.allcmd
 
-for filename in os.listdir("allcmd"):
+for filename in os.listdir("quiet/allcmd"):
     if filename.endswith(".py"):
         module_name = filename[:-3]
         module = importlib.import_module(f"allcmd.{module_name}")
