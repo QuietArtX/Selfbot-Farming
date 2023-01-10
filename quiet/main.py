@@ -35,8 +35,6 @@ for filename in os.listdir("quiet/allcmd"):
             if isinstance(obj, discord.ext.commands.core.Command):
                 quiet.add_command(obj)
 
-quiet.add_command(uptime)
-
 
 print(f'''
 {Fore.BLUE}
