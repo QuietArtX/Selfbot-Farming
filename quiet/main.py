@@ -56,7 +56,7 @@ def getstatus(m):
     return m.status
 
 def get_prefix(quiet,message):
-    with open("prefixes.json", "r") as f:
+    with open("quiet/prefixes.json", "r") as f:
       prefixes = json.load(f)
 
     return prefixes 
@@ -178,12 +178,12 @@ async def gban(ctx, x: int):
 async def cprefix(ctx, *, prefix):
     await ctx.message.delete()
 
-    with open("prefixes.json", "r") as f:
+    with open("quiet/prefixes.json", "r") as f:
       prefixes = json.load(f)
 
     prefixes = prefix
 
-    with open("prefixes.json", "w") as f:
+    with open("quiet/prefixes.json", "w") as f:
       json.dump(prefixes,f)
     await ctx.send(f"> Prefix Has Been Changed To **{prefix}**")
 
@@ -195,7 +195,7 @@ async def on_message(msg):
 
          if msg.mention[1] == quiet.user:
 
-              with open("prefixes.json", "r") as f:
+              with open("quiet/prefixes.json", "r") as f:
                  prefixes = json.load(f)
 
               pre = prefixes
