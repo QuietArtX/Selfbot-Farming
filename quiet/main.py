@@ -784,9 +784,9 @@ async def search(ctx, *, query):
     await ctx.send(message)
 #===========================================
 #-------------------END----------------------
-#============================================
+#======================================
 
-@quiet.add_listener(on_message, "on_message")
+@quiet.event
 async def on_message(message):
     if message.author != quiet.user:
         if message.channel.id in channel_ids:
