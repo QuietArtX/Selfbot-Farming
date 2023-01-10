@@ -793,7 +793,7 @@ async def on_message(message):
         if message.channel.id in channel_ids:
             if "keyword" in message.content:
                   await message.channel.send("Hello, this is your auto-reply message")
-await quiet.process_commands(message)
+    await quiet.process_commands(message)
 
 #============================================
 #----------------DATABASE--------------------
