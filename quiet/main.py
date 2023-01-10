@@ -26,7 +26,7 @@ import re
 import typing
 import random
 import time
-from test import sui
+from allcmd.test import sui
 import pafy
 import youtube_dl
 
