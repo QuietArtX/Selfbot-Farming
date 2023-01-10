@@ -2,7 +2,7 @@ import discord
 import time
 import requests
 from discord.ext import commands
-from quiet.setting.prefixes import get_prefix
+from main import get_prefix
 
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=None, shorten=None, case_insensitive=True)
