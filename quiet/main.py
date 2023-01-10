@@ -29,7 +29,12 @@ import time
 import pafy
 import youtube_dl
 import importlib
-from setting.prefixes import get_prefix
+
+def get_prefix(quiet,message):
+    with open("quiet/setting/prefixes.json", "r") as f:
+      prefixes = json.load(f)
+
+    return prefixes
 
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix=get_prefix, selfbot=True)
