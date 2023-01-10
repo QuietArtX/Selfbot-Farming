@@ -29,7 +29,6 @@ import time
 import pafy
 import youtube_dl
 import importlib
-import quiet.allcmd
 
 for filename in os.listdir("quiet/allcmd"):
     if filename.endswith(".py"):
