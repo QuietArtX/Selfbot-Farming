@@ -67,6 +67,13 @@ giveaway_entries = []
 API_KEY = "28bf153817808a7c28697f2b4bbbff39"
 owners = [989430735561715712, 1048214159877226547]
 
+@quiet.event
+async def on_message(message):
+    if message.author != quiet.user:
+        if message.content.startswith("!mycommand"):
+            # Do something
+            await message.channel.send("Hello, this is your command")
+
 #--------------------------------------------
 #--------------------------------------------
 
