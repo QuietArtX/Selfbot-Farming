@@ -1,4 +1,4 @@
-@quiet.event
+@client.event
 async def on_ready():
     # Load the prefix from the prefix file if exists
     if os.path.exists("quiet/setting/prefixes.json"):
