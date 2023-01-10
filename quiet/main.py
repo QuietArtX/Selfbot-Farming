@@ -26,7 +26,6 @@ import re
 import typing
 import random
 import time
-from test import sui
 import pafy
 import youtube_dl
 import importlib
