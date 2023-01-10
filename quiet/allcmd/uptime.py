@@ -5,7 +5,7 @@ from discord.ext import commands
 
 
 quiet = discord.Client()
-quiet = commands.Bot(command_prefix=quiet.command_prefix, selfbot=True, help_command=None)
+quiet = commands.Bot(command_prefix="!!", selfbot=True, help_command=None)
 start_time = time.time()
 
 @quiet.command()
