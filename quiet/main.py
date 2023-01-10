@@ -41,7 +41,7 @@ quiet = commands.Bot(command_prefix=get_prefix, selfbot=True)
 for filename in os.listdir("quiet/allcmd"):
     if filename.endswith(".py"):
         module_name = filename[:-3]
-        module = importlib.import_module(f"allcmd.{module_name}")
+        module = importlib.import_module(f"{module_name}")
         for name, obj in vars(module).items():
             if isinstance(obj, discord.ext.commands.core.Command):
                 quiet.add_command(obj)
