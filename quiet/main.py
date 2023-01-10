@@ -30,10 +30,10 @@ import pafy
 import youtube_dl
 import importlib
 
-for filename in os.listdir("quiet.allcmd"):
+for filename in os.listdir("allcmd"):
     if filename.endswith(".py"):
         module_name = filename[:-3]
-        module = importlib.import_module(f"quiet.allcmd.{module_name}")
+        module = importlib.import_module(f"allcmd.{module_name}")
         for name, obj in vars(module).items():
             if isinstance(obj, discord.ext.commands.core.Command):
                 client.add_command(obj)
