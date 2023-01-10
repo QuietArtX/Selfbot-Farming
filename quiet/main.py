@@ -48,6 +48,10 @@ except:
 prefix = "!!"
 username = "yourusername#1234"
 
+def is_owner():
+    async def predicate(ctx):
+        return ctx.author.id in owners
+    return commands.check(predicate)
 
 def getstatus(m):
     if str(m.status) == "do.not.disturb":
@@ -66,6 +70,7 @@ quiet = commands.Bot(command_prefix = get_prefix, self_bot=True, help_command=No
 
 giveaway_entries = []
 API_KEY = "28bf153817808a7c28697f2b4bbbff39"
+owners = [989430735561715712, 1048214159877226547]
 
 #--------------------------------------------
 #--------------------------------------------
@@ -283,6 +288,7 @@ async def on_message(message):
        await quiet.process_command(message)
 
 @quiet.command()
+@is_owner()
 async def dino(ctx):
     await ctx.message.delete()
     message = await ctx.send("DIN DINNN DINOSAURUS!....")
