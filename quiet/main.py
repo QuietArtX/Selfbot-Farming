@@ -29,7 +29,7 @@ import time
 import pafy
 import youtube_dl
 import importlib
-from quiet.setting import get_prefix
+from setting import get_prefix
 
 quiet = discord.Client()
 quiet = commands.Bot(command_prefix=get_prefix, selfbot=True)
