@@ -9,6 +9,7 @@
 #------------------MODULE--------------------
 import discord
 from discord.ext import commands
+from discord.ext.commands.bot import on_message
 from discord.utils import get
 import colorama
 from colorama import Fore
@@ -788,14 +789,11 @@ async def search(ctx, *, query):
 
 @quiet.add_listener(on_message, "on_message")
 async def on_message(message):
-   try:
-      if message.author != quiet.user:
-          if message.channel.id in channel_ids:
-              if "keyword" in message.content:
+    if message.author != quiet.user:
+        if message.channel.id in channel_ids:
+            if "keyword" in message.content:
                   await message.channel.send("Hello, this is your auto-reply message")
-   except:
-      pass
-   await quiet.process_commands(message)
+await quiet.process_commands(message)
 
 #============================================
 #----------------DATABASE--------------------
