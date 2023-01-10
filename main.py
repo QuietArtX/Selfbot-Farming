@@ -26,7 +26,7 @@ import re
 import typing
 import random
 import time
-import quiet
+from quiet import sui
 import pafy
 import youtube_dl
 
