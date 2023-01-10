@@ -790,9 +790,9 @@ async def search(ctx, *, query):
 async def on_message(message):
    try:
       if message.author != quiet.user:
-         if message.channel.id in channel_ids:
-             if "keyword" in message.content:
-                 await message.channel.send("Hello, this is your auto-reply message")
+          if message.channel.id in channel_ids:
+              if "keyword" in message.content:
+                  await message.channel.send("Hello, this is your auto-reply message")
    except:
       pass
    await quiet.process_commands(message)
