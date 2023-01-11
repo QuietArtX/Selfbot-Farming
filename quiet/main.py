@@ -23,7 +23,7 @@ from googleapiclient.discovery import build
 from datetime import datetime, timedelta, timezone
 import os
 import re
-from typing import Tuple
+import typing
 import random
 import time
 import pafy
@@ -52,13 +52,6 @@ def getstatus(m):
     if str(m.status) == "do.not.disturb":
         return "do not disturb"
     return m.status
-
-def parse_expression(expression: str) -> Tuple[str, int, int]:
-    match = re.search("(\d+)([\+\-\*\/])(\d+)", expression)
-    if match:
-        return match.groups()
-    else:
-        return None
 
 
 def get_prefix(quiet,message):
@@ -179,25 +172,6 @@ async def gban(ctx, x: int):
 #-------------------END----------------------
 #============================================
 
-@quiet.command()
-async def calculator(ctx, *, expression: str):
-    """Simple calculator."""
-    parsed = parse_expression(expression)
-    if parsed:
-        operator, left, right = parsed
-        left, right = int(left), int(right)
-        if operator == "+":
-            result = left + right
-        elif operator == "-":
-            result = left - right
-        elif operator == "*":
-            result = left * right
-        elif operator == "/":
-            result = left / right
-
-        await ctx.send(f"{expression} = {result}")
-    else:
-        await ctx.send("Invalid expression")
 
 #============================================
 #------------------SETTINGS------------------
